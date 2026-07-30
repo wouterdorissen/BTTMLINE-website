@@ -156,6 +156,22 @@ img { max-width: 100%; }
 }
 .logo-link:hover .logo-mono { background-color: var(--green); }
 
+/* Cursor pulse over buttons/links/logos */
+#cursor-pulse {
+  position: fixed; left: 0; top: 0; z-index: 65; pointer-events: none;
+  opacity: 0; transition: opacity .2s ease; will-change: transform;
+}
+#cursor-pulse span {
+  display: block; width: 14px; height: 14px; margin: -7px 0 0 -7px;
+  border-radius: 50%; background: var(--accent);
+  box-shadow: 0 0 10px rgba(43, 216, 168, .55);
+  animation: cursorPulse 1.1s ease-in-out infinite;
+}
+@keyframes cursorPulse {
+  0%, 100% { transform: scale(.8); opacity: .9; }
+  50%      { transform: scale(1.5); opacity: .4; }
+}
+
 /* ============================================================
    Header
    ============================================================ */
@@ -265,5 +281,5 @@ body.menu-open .mobile-menu { opacity: 1; visibility: visible; transform: none; 
   html { scroll-behavior: auto; }
   .bg-layer * { animation: none !important; }
   .hero-grid, .hero-sweep, .hero-orb { animation: none !important; }
-  .cursor-grid { display: none !important; }
+  .cursor-grid, #cursor-pulse { display: none !important; }
 }
