@@ -1,0 +1,14 @@
+# BTTMLINE
+
+> Automatisering en AI voor Vlaamse bedrijven. Senior software engineers die processen bekijken, eerlijk zeggen wat met automatisering of AI kan (en wat niet), en bouwen wat werkt. Van strategie tot draaiende oplossing.
+
+BTTMLINE (uitgesproken "bottom line", geschreven zonder klinkers) is gevestigd in Hasselt, België, en werd opgericht door Tom Kellens en Ben Jorissen. Kernidee: niet alles is AI. De grootste winst zit vaak in slimme automatisering, RPA of maatwerksoftware. Aanpak: proces eerst, tool later. De mens blijft in controle; AI en automatisering nemen het repetitieve werk over.
+
+## Diensten
+- [Diensten en trajecten](https://www.bttmline.be/diensten): Start AI (gesubsidieerd instaptraject via Agoria en Vlaio), strategie en procesmapping, bouwen en begeleiden (AI-agents, RPA, integraties, maatwerksoftware) en Managed AI Operations.
+- [Cases](https://www.bttmline.be/cases): echte projecten en resultaten, van diepe AI-automatisering tot slimme oplossingen zonder AI.
+
+## Meer
+- [Inzichten (webinars en blog)](https://www.bttmline.be/inzichten): gratis kennis over AI en automatisering, in mensentaal en zonder hype.
+- [Team](https://www.bttmline.be/team): de engineers die de strategie bepalen én de oplossing bouwen.
+- [Contact](https://www.bttmline.be/contact): een gesprek van 30 minuten. hallo@bttmline.be, Hasselt, België.

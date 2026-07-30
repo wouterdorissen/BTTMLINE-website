@@ -9,9 +9,55 @@ const {
   current,
 } = Astro.props;
 
-const siteBase = Astro.site ?? 'https://www.bttmline.be';
+const siteBase = (Astro.site ?? new URL('https://www.bttmline.be')).href.replace(/\/$/, '');
 const canonical = new URL(Astro.url.pathname, siteBase).href;
 const ogImage = new URL('/og-image.png', siteBase).href;
+
+// Structured data (JSON-LD) for search engines and AI/GEO engines.
+const orgId = siteBase + '/#organization';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': orgId,
+      name: 'BTTMLINE',
+      url: siteBase + '/',
+      logo: siteBase + '/assets/bttmline-logo-white.png',
+      image: ogImage,
+      description: 'BTTMLINE bouwt automatisering en AI voor Vlaamse bedrijven. Senior software engineers die processen bekijken, eerlijk zeggen wat met automatisering of AI kan, en bouwen wat werkt.',
+      slogan: 'Praktische AI, zonder hype.',
+      email: 'hallo@bttmline.be',
+      address: { '@type': 'PostalAddress', addressLocality: 'Hasselt', addressCountry: 'BE' },
+      areaServed: { '@type': 'Country', name: 'België' },
+      founder: [
+        { '@type': 'Person', name: 'Tom Kellens' },
+        { '@type': 'Person', name: 'Ben Jorissen' },
+      ],
+      knowsAbout: [
+        'Automatisering', 'Artificiële intelligentie', 'AI-agents', 'RPA',
+        'Procesautomatisatie', 'Systeemintegraties', 'Maatwerksoftware', 'AI-strategie',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': siteBase + '/#website',
+      url: siteBase + '/',
+      name: 'BTTMLINE',
+      inLanguage: 'nl-BE',
+      publisher: { '@id': orgId },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': canonical + '#webpage',
+      url: canonical,
+      name: title,
+      description,
+      isPartOf: { '@id': siteBase + '/#website' },
+      inLanguage: 'nl-BE',
+    },
+  ],
+};
 ---
 <!DOCTYPE html>
 <html lang="nl-BE">
@@ -39,6 +85,7 @@ const ogImage = new URL('/og-image.png', siteBase).href;
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
 </head>
 <body>
   <div style="position:relative; min-height:100vh; isolation:isolate">
