@@ -62,12 +62,12 @@ img { max-width: 100%; }
 .hero-grid {
   position: absolute; inset: 0; z-index: 0; pointer-events: none;
   background-image:
-    linear-gradient(rgba(0, 120, 97, .30) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 120, 97, .30) 1px, transparent 1px);
+    linear-gradient(rgba(0, 120, 97, .40) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 120, 97, .40) 1px, transparent 1px);
   background-size: 58px 58px;
   animation: heroGridPan 20s linear infinite;
-  mask-image: radial-gradient(72% 98% at 87% 50%, #000 0%, rgba(0,0,0,.55) 42%, transparent 74%);
-  -webkit-mask-image: radial-gradient(72% 98% at 87% 50%, #000 0%, rgba(0,0,0,.55) 42%, transparent 74%);
+  mask-image: radial-gradient(85% 105% at 78% 50%, #000 0%, rgba(0,0,0,.64) 50%, transparent 86%);
+  -webkit-mask-image: radial-gradient(85% 105% at 78% 50%, #000 0%, rgba(0,0,0,.64) 50%, transparent 86%);
 }
 @keyframes heroGridPan {
   from { background-position: 0 0, 0 0; }
