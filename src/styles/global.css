@@ -1,0 +1,207 @@
+/* ============================================================
+   BTTMLINE — global styles
+   Design tokens, base reset, fonts, keyframes, hover-states and
+   the responsive rules. The per-section visual styling lives
+   inline in the page markup (kept 1:1 with the design handoff);
+   this file only carries what needs to be shared or behavioural.
+   ============================================================ */
+
+:root {
+  --bg: #050706;
+  --panel: #080B0A;
+  --panel-hover: #0A0F0D;
+  --tile-hover: #0B100E;
+  --alt: #070A09;
+  --footer: #040605;
+  --text: #F2F5F3;
+  --text-2: rgba(242, 245, 243, .66);
+  --text-3: rgba(242, 245, 243, .45);
+  --green: #007861;
+  --green-hover: #00926F;
+  --green-border: #00A583;
+  --accent: #2BD8A8;
+  --hairline: rgba(255, 255, 255, .07);
+  --hairline-10: rgba(255, 255, 255, .1);
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Archivo, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: #FFFFFF; }
+img { max-width: 100%; }
+
+::selection { background: var(--green); color: #fff; }
+
+/* ---- keyframes (background motion) ---- */
+@keyframes drift {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(0, -72px, 0); }
+}
+@keyframes glowA {
+  0%, 100% { transform: translate3d(-10%, 0, 0) scale(1); opacity: .5; }
+  50%      { transform: translate3d(10%, -6%, 0) scale(1.15); opacity: .8; }
+}
+@keyframes glowB {
+  0%, 100% { transform: translate3d(6%, 4%, 0) scale(1.1); opacity: .35; }
+  50%      { transform: translate3d(-8%, -4%, 0) scale(1); opacity: .6; }
+}
+
+/* ============================================================
+   Hover states — the prototype applied these via JS (style-hover).
+   Here they are real :hover rules. !important so they win over the
+   element's inline base style.
+   ============================================================ */
+.nav-link { transition: color .3s ease; }
+.nav-link:hover,
+.nav-links a[aria-current="page"] { color: var(--text) !important; }
+
+.btn-cta { transition: box-shadow .3s ease, background .3s ease; }
+.btn-cta:hover {
+  background: var(--green-hover) !important;
+  box-shadow: 0 0 32px rgba(0, 120, 97, .55) !important;
+}
+
+.btn-ghost { transition: border-color .3s ease, background .3s ease; }
+.btn-ghost:hover {
+  border-color: rgba(43, 216, 168, .6) !important;
+  background: rgba(0, 120, 97, .12) !important;
+}
+
+.card { transition: border-color .3s ease, transform .3s ease, background .3s ease; }
+.card:hover {
+  border-color: rgba(43, 216, 168, .55) !important;
+  transform: translateY(-3px) !important;
+  background: var(--panel-hover) !important;
+}
+
+.case { transition: border-color .3s ease; }
+.case:hover { border-color: rgba(43, 216, 168, .4) !important; }
+
+.tile { transition: background .3s ease; }
+.tile:hover { background: var(--tile-hover) !important; }
+
+.logo-item { transition: color .3s ease, background .3s ease; }
+.logo-item:hover { color: var(--text) !important; background: var(--panel-hover) !important; }
+
+/* ============================================================
+   Header
+   ============================================================ */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(5, 7, 6, .72);
+  border-bottom: 1px solid var(--hairline);
+}
+.header-inner {
+  max-width: 1280px; margin: 0 auto;
+  padding: 16px 32px;
+  display: flex; align-items: center; gap: 40px;
+}
+.nav-links { display: flex; gap: 28px; align-items: center; margin-left: auto; }
+.nav-links a {
+  font-family: var(--mono); font-size: 12px; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(242, 245, 243, .62);
+}
+.header-actions { display: flex; align-items: center; gap: 20px; }
+.nav-toggle {
+  display: none;
+  margin-left: auto;
+  background: none; border: 1px solid rgba(255, 255, 255, .16);
+  width: 42px; height: 42px; padding: 0; cursor: pointer;
+  align-items: center; justify-content: center;
+}
+.nav-toggle span {
+  position: relative; display: block; width: 18px; height: 1.5px;
+  background: var(--text); transition: transform .25s ease, opacity .25s ease;
+}
+.nav-toggle span::before,
+.nav-toggle span::after {
+  content: ""; position: absolute; left: 0; width: 18px; height: 1.5px;
+  background: var(--text); transition: transform .25s ease, opacity .25s ease;
+}
+.nav-toggle span::before { top: -6px; }
+.nav-toggle span::after { top: 6px; }
+body.menu-open .nav-toggle span { background: transparent; }
+body.menu-open .nav-toggle span::before { transform: translateY(6px) rotate(45deg); }
+body.menu-open .nav-toggle span::after { transform: translateY(-6px) rotate(-45deg); }
+
+/* Mobile fullscreen menu */
+.mobile-menu {
+  position: fixed; inset: 0; z-index: 45;
+  background: rgba(5, 7, 6, .97);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  display: flex; flex-direction: column; justify-content: center;
+  gap: 6px; padding: 90px 24px 40px;
+  opacity: 0; visibility: hidden; transform: translateY(-8px);
+  transition: opacity .3s ease, transform .3s ease, visibility .3s;
+}
+body.menu-open .mobile-menu { opacity: 1; visibility: visible; transform: none; }
+.mobile-menu a {
+  font-family: var(--mono); font-size: 15px; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--text);
+  padding: 18px 8px; border-bottom: 1px solid var(--hairline);
+}
+.mobile-menu a[aria-current="page"] { color: var(--accent); }
+.mobile-menu .btn-cta {
+  margin-top: 24px; text-align: center; text-transform: none;
+  letter-spacing: .04em; border-bottom: 1px solid var(--green-border);
+}
+
+/* ============================================================
+   Responsive — the prototype is desktop-first.
+   < 1024px: two-column grids collapse; cases stack.
+   < 768px:  nav becomes a hamburger; sections get tighter padding.
+   ============================================================ */
+@media (max-width: 1024px) {
+  .stack-2 { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .case { grid-template-columns: 1fr !important; }
+  .case-meta {
+    border-left: none !important;
+    border-top: 1px solid var(--hairline-10) !important;
+  }
+  .webinar-row { grid-template-columns: 1fr !important; gap: 6px !important; }
+  .webinar-row .webinar-index { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 40px !important; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none !important; }
+  .nav-toggle { display: flex; }
+  .header-inner { gap: 16px; }
+  .header-cta-desktop { display: none; }
+
+  .grid-4 { grid-template-columns: 1fr !important; }
+  .footer-grid { grid-template-columns: 1fr !important; }
+
+  /* tighter, uniform section rhythm on phones */
+  .sec {
+    padding-top: 72px !important;
+    padding-bottom: 72px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  .sec-hero { padding-top: 92px !important; }
+}
+
+/* Respect reduced-motion — disable background drift/glow and the
+   cursor grid entirely. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .bg-layer * { animation: none !important; }
+  .cursor-grid { display: none !important; }
+}

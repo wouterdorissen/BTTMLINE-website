@@ -1,0 +1,63 @@
+---
+// Fixed site header, shared across every route.
+// `current` marks the active page for nav highlighting.
+const { current } = Astro.props;
+
+const links = [
+  { href: '/diensten', label: 'Diensten' },
+  { href: '/cases', label: 'Cases' },
+  { href: '/inzichten', label: 'Inzichten' },
+  { href: '/team', label: 'Team' },
+  { href: '/contact', label: 'Contact' },
+];
+const isCurrent = (href) => current === href;
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" aria-label="BTTMLINE home" style="display:flex; align-items:center">
+      <img src="/assets/bttmline-logo-white.png" alt="BTTMLINE" width="500" height="63" style="height:22px; width:auto; display:block" />
+    </a>
+
+    <nav class="nav-links" aria-label="Hoofdnavigatie">
+      {links.map((l) => (
+        <a
+          class="nav-link"
+          href={l.href}
+          aria-current={isCurrent(l.href) ? 'page' : undefined}
+        >{l.label}</a>
+      ))}
+      <a
+        class="btn-cta header-cta-desktop"
+        href="/contact"
+        style="background:#007861; color:#FFFFFF; font-family:var(--mono); font-size:12px; letter-spacing:.06em; padding:11px 18px; border:1px solid #00A583"
+      >Gratis AI Automation Audit</a>
+    </nav>
+
+    <div class="header-actions" style="margin-left:auto">
+      <a
+        class="btn-cta header-cta-mobile"
+        href="/contact"
+        style="display:none; background:#007861; color:#FFFFFF; font-family:var(--mono); font-size:11px; letter-spacing:.04em; padding:10px 14px; border:1px solid #00A583"
+      >Gratis audit</a>
+      <button class="nav-toggle" type="button" aria-label="Menu openen" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobiele navigatie">
+  <a href="/" aria-current={isCurrent('/') ? 'page' : undefined}>Home</a>
+  {links.map((l) => (
+    <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
+  ))}
+  <a class="btn-cta" href="/contact" style="background:#007861; color:#FFFFFF; font-family:var(--mono); font-size:13px; padding:16px 18px; border:1px solid #00A583">Gratis AI Automation Audit</a>
+</nav>
+
+<style>
+  /* Show the compact CTA only on phones, where the desktop nav is hidden. */
+  @media (max-width: 768px) {
+    .header-cta-mobile { display: inline-block !important; }
+  }
+</style>
