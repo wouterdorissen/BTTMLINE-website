@@ -58,6 +58,26 @@ img { max-width: 100%; }
   50%      { transform: translate3d(-8%, -4%, 0) scale(1); opacity: .6; }
 }
 
+/* ---- hero animated grid (auto-panning + gentle pulse, low opacity) ---- */
+.hero-grid {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0, 120, 97, .16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 120, 97, .16) 1px, transparent 1px);
+  background-size: 64px 64px;
+  animation: heroGridPan 22s linear infinite, heroGridPulse 7s ease-in-out infinite;
+  mask-image: radial-gradient(120% 110% at 70% 44%, #000 0%, rgba(0,0,0,.6) 44%, transparent 80%);
+  -webkit-mask-image: radial-gradient(120% 110% at 70% 44%, #000 0%, rgba(0,0,0,.6) 44%, transparent 80%);
+}
+@keyframes heroGridPan {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 64px 64px, 64px 64px; }
+}
+@keyframes heroGridPulse {
+  0%, 100% { opacity: .5; }
+  50%      { opacity: 1; }
+}
+
 /* ============================================================
    Hover states — the prototype applied these via JS (style-hover).
    Here they are real :hover rules. !important so they win over the
@@ -203,5 +223,6 @@ body.menu-open .mobile-menu { opacity: 1; visibility: visible; transform: none; 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .bg-layer * { animation: none !important; }
+  .hero-grid { animation: none !important; }
   .cursor-grid { display: none !important; }
 }

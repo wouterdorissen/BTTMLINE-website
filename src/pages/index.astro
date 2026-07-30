@@ -3,36 +3,19 @@ import Base from '../layouts/Base.astro';
 ---
 <Base current="/">
 
-  <section class="sec sec-hero" style="max-width:1280px; margin:0 auto; padding:110px 32px 90px">
+  <section class="sec sec-hero" style="position:relative; overflow:hidden; max-width:1280px; margin:0 auto; padding:110px 32px 90px">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-content" style="position:relative; z-index:1">
     <div style="display:flex; align-items:center; gap:12px; margin-bottom:28px">
       <span style="width:7px; height:7px; background:#2BD8A8; border-radius:50%"></span>
       <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:#2BD8A8">Praktische AI, zonder hype.</span>
     </div>
     <h1 style="font-family:Archivo; font-weight:600; font-size:clamp(42px,6.4vw,96px); line-height:.98; letter-spacing:-.04em; margin:0; max-width:19ch; text-wrap:balance">Automatisering en AI die je bedrijf écht vooruit helpen.</h1>
-    <div class="stack-2" style="display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:56px; margin-top:56px; align-items:end">
-      <p style="font-size:18px; line-height:1.62; color:rgba(242,245,243,.66); margin:0; max-width:56ch; text-wrap:pretty">We zijn geen AI hype bedrijf. We zijn senior software engineers die al ver voor de AI-hype grote, complexe systemen bouwden. We kijken naar je processen, zeggen eerlijk wat met automatisering of AI kan en wat niet, en bouwen wat werkt. Van strategie tot draaiende oplossing.</p>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; border-left:1px solid rgba(255,255,255,.1); padding-left:28px">
-        <div>
-          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(242,245,243,.4)">Basis</div>
-          <div style="font-size:15px; margin-top:6px">Hasselt, België</div>
-        </div>
-        <div>
-          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(242,245,243,.4)">Focus</div>
-          <div style="font-size:15px; margin-top:6px">Automatisering, AI, maatwerk</div>
-        </div>
-        <div>
-          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(242,245,243,.4)">Aanpak</div>
-          <div style="font-size:15px; margin-top:6px">Proces eerst, tool later</div>
-        </div>
-        <div>
-          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(242,245,243,.4)">Instap</div>
-          <div style="font-size:15px; margin-top:6px">Gesprek van 30 minuten</div>
-        </div>
-      </div>
-    </div>
+    <p style="font-size:18px; line-height:1.62; color:rgba(242,245,243,.66); margin:56px 0 0; max-width:60ch; text-wrap:pretty">We zijn geen AI hype bedrijf. We zijn senior software engineers die al ver voor de AI-hype grote, complexe systemen bouwden. We kijken naar je processen, zeggen eerlijk wat met automatisering of AI kan en wat niet, en bouwen wat werkt. Van strategie tot draaiende oplossing.</p>
     <div style="display:flex; flex-wrap:wrap; gap:14px; margin-top:48px">
       <a class="btn-cta" href="/contact" style="background:#007861; color:#FFFFFF; font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:.04em; padding:17px 26px; border:1px solid #00A583">Gratis AI Automation Audit</a>
       <a class="btn-ghost" href="/diensten" style="color:#F2F5F3; font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:.04em; padding:17px 26px; border:1px solid rgba(255,255,255,.16)">Ontdek Start AI</a>
+    </div>
     </div>
   </section>
 
