@@ -58,23 +58,48 @@ img { max-width: 100%; }
   50%      { transform: translate3d(-8%, -4%, 0) scale(1); opacity: .6; }
 }
 
-/* ---- hero animated grid (auto-panning + gentle pulse, low opacity) ---- */
+/* ---- hero animated background: right-weighted grid + rotating sweep + glow ---- */
 .hero-grid {
   position: absolute; inset: 0; z-index: 0; pointer-events: none;
   background-image:
-    linear-gradient(rgba(0, 120, 97, .16) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 120, 97, .16) 1px, transparent 1px);
-  background-size: 64px 64px;
-  animation: heroGridPan 22s linear infinite, heroGridPulse 7s ease-in-out infinite;
-  mask-image: radial-gradient(120% 110% at 70% 44%, #000 0%, rgba(0,0,0,.6) 44%, transparent 80%);
-  -webkit-mask-image: radial-gradient(120% 110% at 70% 44%, #000 0%, rgba(0,0,0,.6) 44%, transparent 80%);
+    linear-gradient(rgba(0, 120, 97, .30) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 120, 97, .30) 1px, transparent 1px);
+  background-size: 58px 58px;
+  animation: heroGridPan 20s linear infinite;
+  mask-image: radial-gradient(72% 98% at 87% 50%, #000 0%, rgba(0,0,0,.55) 42%, transparent 74%);
+  -webkit-mask-image: radial-gradient(72% 98% at 87% 50%, #000 0%, rgba(0,0,0,.55) 42%, transparent 74%);
 }
 @keyframes heroGridPan {
   from { background-position: 0 0, 0 0; }
-  to   { background-position: 64px 64px, 64px 64px; }
+  to   { background-position: 58px 58px, 58px 58px; }
 }
-@keyframes heroGridPulse {
-  0%, 100% { opacity: .5; }
+
+/* rotating radar-sweep on the right: gives the hero a moving "shape" */
+.hero-sweep {
+  position: absolute; z-index: 0; pointer-events: none;
+  top: 50%; right: -10%; width: min(56vw, 720px); aspect-ratio: 1;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: conic-gradient(from 0deg,
+    rgba(0,120,97,0) 0deg, rgba(0,120,97,.22) 44deg,
+    rgba(43,216,168,.12) 72deg, rgba(0,120,97,0) 128deg);
+  mask-image: radial-gradient(circle at center, transparent 26%, #000 44%, #000 60%, transparent 78%);
+  -webkit-mask-image: radial-gradient(circle at center, transparent 26%, #000 44%, #000 60%, transparent 78%);
+  animation: heroSweep 14s linear infinite;
+}
+@keyframes heroSweep { to { transform: translateY(-50%) rotate(360deg); } }
+
+/* soft green core glow on the right for depth */
+.hero-orb {
+  position: absolute; z-index: 0; pointer-events: none;
+  top: 50%; right: -4%; width: min(40vw, 520px); aspect-ratio: 1;
+  transform: translateY(-50%);
+  background: radial-gradient(circle, rgba(0,120,97,.30) 0%, rgba(0,120,97,0) 62%);
+  filter: blur(12px);
+  animation: heroOrbPulse 9s ease-in-out infinite;
+}
+@keyframes heroOrbPulse {
+  0%, 100% { opacity: .55; }
   50%      { opacity: 1; }
 }
 
@@ -223,6 +248,6 @@ body.menu-open .mobile-menu { opacity: 1; visibility: visible; transform: none; 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .bg-layer * { animation: none !important; }
-  .hero-grid { animation: none !important; }
+  .hero-grid, .hero-sweep, .hero-orb { animation: none !important; }
   .cursor-grid { display: none !important; }
 }
