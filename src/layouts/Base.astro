@@ -85,13 +85,16 @@ const ogImage = new URL('/og-image.png', siteBase).href;
     // Cursor spotlight grid — write CSS vars straight to the element so the
     // page never re-renders on mouse move. Disabled for touch / reduced-motion.
     const grid = document.getElementById('cursor-grid');
+    const heroEl = document.querySelector('.hero-outer');
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const fine = window.matchMedia('(pointer: fine)').matches;
     if (grid && fine && !reduce) {
       window.addEventListener('mousemove', (e) => {
         grid.style.setProperty('--gx', e.clientX + 'px');
         grid.style.setProperty('--gy', e.clientY + 'px');
-        if (grid.style.opacity !== '1') grid.style.opacity = '1';
+        // Only reveal the cursor grid once you're below the hero (the hero already has its own grid).
+        const heroBottom = heroEl ? heroEl.getBoundingClientRect().bottom : 0;
+        grid.style.opacity = e.clientY > heroBottom ? '1' : '0';
       }, { passive: true });
       document.addEventListener('mouseleave', () => { grid.style.opacity = '0'; });
     }
