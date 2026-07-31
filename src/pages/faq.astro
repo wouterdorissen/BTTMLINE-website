@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+
+const faqs = [
+  {
+    q: 'Is alles wat jullie doen AI?',
+    a: 'Nee. Vaak zit de grootste winst in slimme automatisering, RPA of maatwerksoftware, zonder één lijn AI. We kijken naar het probleem en kiezen de oplossing die werkt, niet de oplossing die het best klinkt.',
+  },
+  {
+    q: 'We weten dat we iets met AI moeten, maar niet waar te beginnen. Wat nu?',
+    a: 'We beginnen bij je processen, niet bij een tool. Meestal met een Start AI-traject: we brengen in kaart waar automatisering of AI echt waarde levert en leveren een concreet plan. Zo weet je waar de winst zit voor je investeert.',
+  },
+  {
+    q: 'Wat is Start AI?',
+    a: 'Een laagdrempelig, gesubsidieerd instaptraject via Agoria en Vlaio. In een paar weken weet je waar AI en automatisering in jouw bedrijf renderen, met een concreet stappenplan. Geen vrijblijvend rapport, maar een beslissing.',
+  },
+  {
+    q: 'Worden onze mensen vervangen door AI?',
+    a: 'Nee. AI en automatisering nemen het repetitieve en foutgevoelige werk over; je mensen doen het werk dat telt. De mens blijft altijd in controle.',
+  },
+  {
+    q: 'Hoe lang duurt een traject?',
+    a: 'Dat hangt af van de scope, maar we werken in weken, niet in maanden. We bewijzen snel met een werkende oplossing en bouwen van daaruit verder.',
+  },
+  {
+    q: 'Wat kost het?',
+    a: 'Elk traject start met een duidelijk beeld van de kosten en de verwachte return. Het instaptraject (Start AI) is gesubsidieerd en dus laagdrempelig; grotere projecten krijgen vooraf een business case, zodat je weet wat je investeert en wat het oplevert.',
+  },
+  {
+    q: 'Draaien jullie oplossingen in de cloud of on-premise?',
+    a: 'Allebei. We draaien oplossingen in de cloud of volledig bij jou on-premise, afhankelijk van je situatie en je databeleid.',
+  },
+  {
+    q: 'Met welke systemen koppelen jullie?',
+    a: 'We koppelen diep met je bestaande systemen en software, van CRM en ERP tot mailboxen en portalen. We passen ons aan hoe jij werkt, niet omgekeerd.',
+  },
+  {
+    q: 'We hebben al iets geprobeerd dat niet werkt. Kunnen jullie helpen?',
+    a: 'Ja, dat horen we vaak. We kijken wat er misliep, bepalen wat wél werkt, en bouwen en begeleiden tot je team er echt mee draait.',
+  },
+  {
+    q: 'Blijven jullie na de oplevering?',
+    a: 'Ja. De meeste projecten stranden op adoptie, niet op techniek. We blijven tot je team er echt mee werkt, en met Managed AI Operations monitoren en optimaliseren we verder.',
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<Base
+  current="/faq"
+  title="Veelgestelde vragen — BTTMLINE"
+  description="Antwoorden op de meestgestelde vragen over automatisering en AI met BTTMLINE: niet alles is AI, waar te beginnen, Start AI, kostprijs, cloud of on-premise, en meer."
+>
+
+  <section class="sec sec-hero" style="max-width:1280px; margin:0 auto; padding:110px 32px 80px">
+    <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:#2BD8A8; margin-bottom:24px">FAQ</div>
+    <h1 style="font-family:Archivo; font-weight:600; font-size:clamp(40px,6vw,88px); line-height:1; letter-spacing:-.04em; margin:0; max-width:18ch">Veelgestelde vragen.</h1>
+    <p style="font-size:18px; line-height:1.65; color:rgba(242,245,243,.66); margin:36px 0 0; max-width:60ch; text-wrap:pretty">Kort en eerlijk. Staat je vraag er niet bij? Plan een gesprek van 30 minuten, dan zeggen we je gewoon waar je aan toe bent.</p>
+  </section>
+
+  <section style="border-top:1px solid rgba(255,255,255,.07)">
+    <div class="sec" style="max-width:900px; margin:0 auto; padding:70px 32px 90px">
+      {faqs.map((f) => (
+        <details class="faq-item">
+          <summary>{f.q}</summary>
+          <div class="faq-a"><p>{f.a}</p></div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section style="border-top:1px solid rgba(255,255,255,.07)">
+    <div class="sec" style="max-width:1280px; margin:0 auto; padding:100px 32px; text-align:center">
+      <h2 style="font-family:Archivo; font-weight:600; font-size:clamp(30px,4vw,52px); letter-spacing:-.035em; margin:0 0 28px; text-wrap:balance">Nog een vraag? Laten we praten.</h2>
+      <a class="btn-cta" href="/contact" style="display:inline-block; background:#007861; color:#FFFFFF; font-family:'JetBrains Mono',monospace; font-size:13px; padding:17px 26px; border:1px solid #00A583">Gratis AI Automation Audit</a>
+    </div>
+  </section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqLd)} />
+
+</Base>
+
+<style>
+  .faq-item { border-top: 1px solid rgba(255, 255, 255, .1); }
+  .faq-item:last-of-type { border-bottom: 1px solid rgba(255, 255, 255, .1); }
+  .faq-item summary {
+    list-style: none; cursor: pointer; padding: 26px 0;
+    display: flex; justify-content: space-between; gap: 24px; align-items: center;
+    font-family: Archivo, sans-serif; font-weight: 600;
+    font-size: clamp(18px, 2.2vw, 22px); letter-spacing: -.02em; color: #F2F5F3;
+    transition: color .3s ease;
+  }
+  .faq-item summary:hover { color: #FFFFFF; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: "+"; flex: none; color: #2BD8A8;
+    font-family: 'JetBrains Mono', monospace; font-size: 24px; line-height: 1;
+  }
+  .faq-item[open] summary::after { content: "\2013"; }
+  .faq-item .faq-a { padding: 0 0 28px; max-width: 70ch; }
+  .faq-item .faq-a p { font-size: 17px; line-height: 1.65; color: rgba(242, 245, 243, .66); margin: 0; }
+</style>
