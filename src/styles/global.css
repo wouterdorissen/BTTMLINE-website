@@ -168,46 +168,6 @@ img { max-width: 100%; }
 }
 .logo-link:hover .logo-mono { background-color: var(--green); }
 
-/* Alex voice-assistant launcher (bottom-right) */
-.alex-launcher {
-  position: fixed; right: 22px; bottom: 22px; z-index: 70;
-  display: inline-flex; align-items: center; gap: 12px;
-  padding: 9px 18px 9px 9px;
-  background: rgba(8, 11, 10, .9);
-  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
-  border: 1px solid rgba(43, 216, 168, .38);
-  border-radius: 999px; cursor: pointer; color: var(--text);
-  font-family: Archivo, sans-serif;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .5), 0 0 22px rgba(0, 120, 97, .28);
-  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-}
-.alex-launcher:hover {
-  transform: translateY(-2px);
-  border-color: rgba(43, 216, 168, .75);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, .6), 0 0 36px rgba(0, 120, 97, .5);
-}
-.alex-avatar {
-  position: relative; flex: none; width: 40px; height: 40px; border-radius: 50%;
-  background: radial-gradient(circle at 32% 28%, #00C79A, #007861);
-  display: flex; align-items: center; justify-content: center;
-}
-.alex-avatar::after {
-  content: ""; position: absolute; inset: -5px; border-radius: 50%;
-  border: 1px solid rgba(43, 216, 168, .6);
-  animation: alexPing 2.4s ease-out infinite;
-}
-@keyframes alexPing {
-  0%        { transform: scale(.85); opacity: .7; }
-  80%, 100% { transform: scale(1.55); opacity: 0; }
-}
-.alex-text { display: flex; flex-direction: column; line-height: 1.1; text-align: left; }
-.alex-title { font-size: 14px; font-weight: 600; letter-spacing: -.01em; }
-.alex-sub { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-top: 3px; }
-@media (max-width: 560px) {
-  .alex-launcher { padding: 8px; }
-  .alex-launcher .alex-text { display: none; }
-}
-
 /* Cursor pulse over buttons/links/logos */
 #cursor-pulse {
   position: fixed; left: 0; top: 0; z-index: 65; pointer-events: none;
@@ -334,5 +294,4 @@ body.menu-open .mobile-menu { opacity: 1; visibility: visible; transform: none; 
   .bg-layer * { animation: none !important; }
   .hero-grid, .hero-sweep, .hero-orb { animation: none !important; }
   .cursor-grid, #cursor-pulse { display: none !important; }
-  .alex-avatar::after { animation: none !important; }
 }

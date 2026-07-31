@@ -113,17 +113,6 @@ const jsonLd = {
     </main>
 
     <Footer />
-
-    <!-- Alex voice-assistant launcher (bottom-right). Koppel de klik aan de ElevenLabs Convai-widget. -->
-    <button id="alex-launcher" class="alex-launcher" type="button" aria-label="Praat met Alex, onze AI-bot">
-      <span class="alex-avatar" aria-hidden="true">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#03110D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/><line x1="12" y1="18" x2="12" y2="22"/></svg>
-      </span>
-      <span class="alex-text">
-        <span class="alex-title">Praat met Alex</span>
-        <span class="alex-sub">onze AI-bot</span>
-      </span>
-    </button>
   </div>
 
   <script>
@@ -176,10 +165,10 @@ const jsonLd = {
       });
     }
 
-    // Alex launcher — koppel dit aan de ElevenLabs Convai-widget zodra die geïntegreerd is.
-    document.getElementById('alex-launcher')?.addEventListener('click', () => {
-      if (typeof window.startAlex === 'function') window.startAlex();
-    });
   </script>
+
+  <!-- ElevenLabs Convai-widget (Alex) -->
+  <elevenlabs-convai agent-id="agent_5801kyv9memxfytb1t3wcbasvgdz"></elevenlabs-convai>
+  <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript" is:inline></script>
 </body>
 </html>
