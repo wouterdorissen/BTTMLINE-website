@@ -103,6 +103,18 @@ img { max-width: 100%; }
   50%      { opacity: 1; }
 }
 
+/* Op laptop/desktop vult de hero het eerste scherm, maar laat hij ruimte zodat
+   de klantlogo's altijd boven de vouw meepiepen. Op kleinere schermen: natuurlijke flow. */
+@media (min-width: 1024px) {
+  .hero-outer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 250px);
+    min-height: calc(100svh - 250px);
+  }
+}
+
 /* ============================================================
    Hover states — the prototype applied these via JS (style-hover).
    Here they are real :hover rules. !important so they win over the
