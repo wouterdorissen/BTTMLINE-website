@@ -69,8 +69,8 @@ import Base from '../layouts/Base.astro';
             <input name="naam" type="text" required autocomplete="name" class="field" placeholder="Je naam" />
           </label>
           <label style="display:grid; gap:8px">
-            <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(242,245,243,.5)">Bedrijf</span>
-            <input name="bedrijf" type="text" autocomplete="organization" class="field" placeholder="Bedrijfsnaam" />
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(242,245,243,.5)">Bedrijf *</span>
+            <input name="bedrijf" type="text" required autocomplete="organization" class="field" placeholder="Bedrijfsnaam" />
           </label>
         </div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px" class="form-row">
@@ -79,8 +79,8 @@ import Base from '../layouts/Base.astro';
             <input name="email" type="email" required autocomplete="email" class="field" placeholder="jij@bedrijf.be" />
           </label>
           <label style="display:grid; gap:8px">
-            <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(242,245,243,.5)">Telefoon</span>
-            <input name="telefoon" type="tel" autocomplete="tel" class="field" placeholder="Optioneel" />
+            <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(242,245,243,.5)">Telefoon *</span>
+            <input name="telefoon" type="tel" required autocomplete="tel" class="field" placeholder="Je telefoonnummer" />
           </label>
         </div>
         <label style="display:grid; gap:8px">
