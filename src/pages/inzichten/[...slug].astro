@@ -15,10 +15,10 @@ const formatted = new Intl.DateTimeFormat('nl-BE', { day: 'numeric', month: 'lon
 <Base current="/inzichten" title={`${title} — BTTMLINE`} description={summary}>
 
   <article class="sec sec-hero" style="max-width:820px; margin:0 auto; padding:110px 32px 40px">
-    <a href="/inzichten" style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(242,245,243,.55)">← Alle inzichten</a>
-    <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#2BD8A8; margin:28px 0 20px">{category}</div>
-    <h1 style="font-family:Archivo; font-weight:600; font-size:clamp(32px,4.6vw,58px); line-height:1.04; letter-spacing:-.035em; margin:0; text-wrap:balance">{title}</h1>
-    <div style="display:flex; gap:16px; align-items:center; margin-top:24px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.06em; color:rgba(242,245,243,.42)">
+    <a href="/inzichten" style="font-family:'Geist',sans-serif; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(242,245,243,.55)">← Alle inzichten</a>
+    <div style="font-family:'Geist',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#2BD8A8; margin:28px 0 20px">{category}</div>
+    <h1 style="font-family:Geist; font-weight:600; font-size:clamp(32px,4.6vw,58px); line-height:1.04; letter-spacing:-.035em; margin:0; text-wrap:balance">{title}</h1>
+    <div style="display:flex; gap:16px; align-items:center; margin-top:24px; font-family:'Geist',sans-serif; font-size:11px; letter-spacing:.06em; color:rgba(242,245,243,.42)">
       <time datetime={date.toISOString()}>{formatted}</time>
       {readingTime && <span>· {readingTime}</span>}
     </div>
@@ -30,15 +30,15 @@ const formatted = new Intl.DateTimeFormat('nl-BE', { day: 'numeric', month: 'lon
     </div>
     <div style="margin-top:56px; padding-top:32px; border-top:1px solid rgba(255,255,255,.1); display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between">
       <span style="font-size:16px; color:rgba(242,245,243,.66)">Vragen na het lezen?</span>
-      <a class="btn-cta" href="/contact" style="display:inline-block; background:#007861; color:#FFFFFF; font-family:'JetBrains Mono',monospace; font-size:13px; padding:15px 24px; border:1px solid #00A583">Gratis AI Automation Audit</a>
+      <a class="btn-cta" href="/contact" style="display:inline-block; background:#007861; color:#FFFFFF; font-family:'Geist',sans-serif; font-size:13px; padding:15px 24px; border:1px solid #00A583">Gratis AI Automation Audit</a>
     </div>
   </div>
 
   <style>
     .prose { font-size:18px; line-height:1.7; color:rgba(242,245,243,.82); }
     .prose > :first-child { margin-top:0; }
-    .prose h2 { font-family:Archivo; font-weight:600; font-size:clamp(24px,2.6vw,32px); letter-spacing:-.02em; line-height:1.15; margin:48px 0 16px; color:#F2F5F3; }
-    .prose h3 { font-family:Archivo; font-weight:600; font-size:20px; letter-spacing:-.01em; margin:34px 0 12px; color:#F2F5F3; }
+    .prose h2 { font-family:Geist; font-weight:600; font-size:clamp(24px,2.6vw,32px); letter-spacing:-.02em; line-height:1.15; margin:48px 0 16px; color:#F2F5F3; }
+    .prose h3 { font-family:Geist; font-weight:600; font-size:20px; letter-spacing:-.01em; margin:34px 0 12px; color:#F2F5F3; }
     .prose p { margin:0 0 20px; text-wrap:pretty; }
     .prose ul, .prose ol { margin:0 0 20px; padding-left:22px; }
     .prose li { margin:0 0 10px; }
@@ -47,7 +47,7 @@ const formatted = new Intl.DateTimeFormat('nl-BE', { day: 'numeric', month: 'lon
     .prose a:hover { color:#FFFFFF; text-decoration-color:#FFFFFF; }
     .prose strong { color:#F2F5F3; font-weight:600; }
     .prose blockquote { margin:24px 0; padding:4px 0 4px 22px; border-left:2px solid rgba(43,216,168,.5); color:rgba(242,245,243,.7); }
-    .prose code { font-family:'JetBrains Mono',monospace; font-size:.9em; background:rgba(255,255,255,.06); padding:2px 6px; }
+    .prose code { font-family:'Geist',sans-serif; font-size:.9em; background:rgba(255,255,255,.06); padding:2px 6px; }
   </style>
 
 </Base>
