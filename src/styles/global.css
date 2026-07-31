@@ -1,28 +1,68 @@
 /* ============================================================
    BTTMLINE — global styles
-   Design tokens, base reset, fonts, keyframes, hover-states and
-   the responsive rules. The per-section visual styling lives
-   inline in the page markup (kept 1:1 with the design handoff);
-   this file only carries what needs to be shared or behavioural.
+   Design tokens, base reset, fonts, keyframes, hover-states en
+   de responsive rules. De per-sectie styling staat inline in de
+   pagina's; dit bestand draagt wat gedeeld of gedrag-gebonden is.
+
+   THEMA: kleuren lopen via variabelen. Donker is de standaard
+   (:root). Licht wordt geactiveerd met html[data-theme="light"].
+   De rgb-tripletten (--fg, --ov, --bg-rgb) voeden alle rgba()-
+   waarden zodat transparanties mee omschakelen.
    ============================================================ */
 
 :root {
+  /* rgb-tripletten voor rgba() */
+  --fg: 242, 245, 243;   /* tekst */
+  --ov: 255, 255, 255;   /* overlays / haarlijnen */
+  --bg-rgb: 5, 7, 6;     /* achtergrond (header-blur) */
+
+  /* vlakken */
   --bg: #050706;
   --panel: #080B0A;
   --panel-hover: #0A0F0D;
   --tile-hover: #0B100E;
   --alt: #070A09;
   --footer: #040605;
+
+  /* tekst */
   --text: #F2F5F3;
-  --text-2: rgba(242, 245, 243, .66);
-  --text-3: rgba(242, 245, 243, .45);
+  --text-2: rgba(var(--fg), .66);
+  --text-3: rgba(var(--fg), .45);
+
+  /* accenten (groen blijft in beide thema's) */
   --green: #007861;
   --green-hover: #00926F;
   --green-border: #00A583;
   --accent: #2BD8A8;
-  --hairline: rgba(255, 255, 255, .07);
-  --hairline-10: rgba(255, 255, 255, .1);
+
+  /* haarlijnen */
+  --hairline: rgba(var(--ov), .07);
+  --hairline-10: rgba(var(--ov), .1);
+
   --mono: 'Geist', sans-serif;
+
+  color-scheme: dark;
+}
+
+/* ---- Licht thema ---- */
+html[data-theme="light"] {
+  --fg: 24, 28, 22;
+  --ov: 0, 0, 0;
+  --bg-rgb: 245, 246, 244;
+
+  --bg: #F5F6F4;
+  --panel: #FFFFFF;
+  --panel-hover: #EEF1EC;
+  --tile-hover: #EEF1EC;
+  --alt: #EFF2EC;
+  --footer: #ECEFE9;
+
+  --text: #14170F;
+
+  /* mint is onleesbaar op wit: donkerder groen voor labels/links */
+  --accent: #06795E;
+
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
@@ -36,13 +76,17 @@ body {
   font-family: Geist, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  transition: background .35s ease, color .35s ease;
 }
 
 a { color: var(--accent); text-decoration: none; }
-a:hover { color: #FFFFFF; }
+a:hover { color: var(--text); }
 img { max-width: 100%; }
 
 ::selection { background: var(--green); color: #fff; }
+
+/* In licht thema het witte woordmerk-logo omkeren naar donker. */
+html[data-theme="light"] img[alt="BTTMLINE"] { filter: invert(1); }
 
 /* ---- keyframes (background motion) ---- */
 @keyframes drift {
@@ -116,9 +160,9 @@ img { max-width: 100%; }
 }
 
 /* ============================================================
-   Hover states — the prototype applied these via JS (style-hover).
-   Here they are real :hover rules. !important so they win over the
-   element's inline base style.
+   Hover states — de prototype paste deze via JS toe (style-hover).
+   Hier zijn het echte :hover-regels. !important zodat ze winnen
+   van de inline basisstijl.
    ============================================================ */
 .nav-link { transition: color .3s ease; }
 .nav-link:hover,
@@ -152,16 +196,16 @@ img { max-width: 100%; }
 .logo-item { transition: color .3s ease, background .3s ease; }
 .logo-item:hover { color: var(--text) !important; background: var(--panel-hover) !important; }
 
-/* Client logos: monochrome white via CSS mask, hover to brand green + link */
+/* Client logos: monochrome via CSS mask, hover to brand green + link */
 .logo-link {
   display: flex; align-items: center; justify-content: center;
-  background: #050706; padding: 30px 20px; min-height: 84px;
+  background: var(--bg); padding: 30px 20px; min-height: 84px;
   transition: background .3s ease;
 }
 .logo-link:hover { background: var(--panel-hover); }
 .logo-mono {
   display: block; width: 100%; max-width: 168px; height: 36px;
-  background-color: rgba(242, 245, 243, .8);
+  background-color: rgba(var(--fg), .8);
   -webkit-mask: var(--logo) center / contain no-repeat;
           mask: var(--logo) center / contain no-repeat;
   transition: background-color .3s ease;
@@ -191,7 +235,7 @@ img { max-width: 100%; }
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  background: rgba(5, 7, 6, .72);
+  background: rgba(var(--bg-rgb), .72);
   border-bottom: 1px solid var(--hairline);
 }
 .header-inner {
@@ -202,13 +246,32 @@ img { max-width: 100%; }
 .nav-links { display: flex; gap: 28px; align-items: center; margin-left: auto; }
 .nav-links a {
   font-family: var(--mono); font-size: 12px; letter-spacing: .1em;
-  text-transform: uppercase; color: rgba(242, 245, 243, .62);
+  text-transform: uppercase; color: rgba(var(--fg), .62);
 }
-.header-actions { display: flex; align-items: center; gap: 20px; }
+.header-actions { display: flex; align-items: center; gap: 16px; }
+
+/* Licht/donker-schakelaar */
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; padding: 0; cursor: pointer;
+  background: none; border: 1px solid var(--hairline-10);
+  color: var(--text);
+  transition: border-color .3s ease, color .3s ease, background .3s ease;
+}
+.theme-toggle:hover {
+  border-color: rgba(43, 216, 168, .55);
+  color: var(--accent);
+  background: rgba(0, 120, 97, .08);
+}
+.theme-toggle svg { width: 18px; height: 18px; display: block; }
+.theme-toggle .ico-moon { display: none; }
+.theme-toggle .ico-sun { display: block; }
+html[data-theme="light"] .theme-toggle .ico-sun { display: none; }
+html[data-theme="light"] .theme-toggle .ico-moon { display: block; }
+
 .nav-toggle {
   display: none;
-  margin-left: auto;
-  background: none; border: 1px solid rgba(255, 255, 255, .16);
+  background: none; border: 1px solid rgba(var(--ov), .16);
   width: 42px; height: 42px; padding: 0; cursor: pointer;
   align-items: center; justify-content: center;
 }
@@ -230,7 +293,7 @@ body.menu-open .nav-toggle span::after { transform: translateY(-6px) rotate(-45d
 /* Mobile fullscreen menu */
 .mobile-menu {
   position: fixed; inset: 0; z-index: 45;
-  background: rgba(5, 7, 6, .97);
+  background: rgba(var(--bg-rgb), .97);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   display: flex; flex-direction: column; justify-content: center;
@@ -251,7 +314,7 @@ body.menu-open .mobile-menu { opacity: 1; visibility: visible; transform: none; 
 }
 
 /* ============================================================
-   Responsive — the prototype is desktop-first.
+   Responsive — de prototype is desktop-first.
    < 1024px: two-column grids collapse; cases stack.
    < 768px:  nav becomes a hamburger; sections get tighter padding.
    ============================================================ */
@@ -270,6 +333,7 @@ body.menu-open .mobile-menu { opacity: 1; visibility: visible; transform: none; 
 
 @media (max-width: 768px) {
   .nav-links { display: none !important; }
+  .header-actions { margin-left: auto; }
   .nav-toggle { display: flex; }
   .header-inner { gap: 16px; }
   .header-cta-desktop { display: none; }

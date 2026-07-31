@@ -66,6 +66,10 @@ const jsonLd = {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script is:inline>
+    // Pas het opgeslagen thema toe vóór de eerste paint (geen flikkering).
+    (function () { try { if (localStorage.getItem('bttmline-theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {} })();
+  </script>
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
@@ -99,7 +103,7 @@ const jsonLd = {
       <div style="position:absolute; inset:-20% -20% -20% -20%; background-image:linear-gradient(rgba(0,120,97,.16) 1px, transparent 1px), linear-gradient(90deg, rgba(0,120,97,.16) 1px, transparent 1px); background-size:72px 72px; animation:drift 14s linear infinite; mask-image:radial-gradient(120% 90% at 50% 0%, #000 0%, transparent 78%); -webkit-mask-image:radial-gradient(120% 90% at 50% 0%, #000 0%, transparent 78%)"></div>
       <div style="position:absolute; top:-30vh; left:-10vw; width:80vw; height:80vh; border-radius:50%; background:radial-gradient(circle, rgba(0,120,97,.34) 0%, rgba(0,120,97,0) 65%); filter:blur(30px); animation:glowA 26s ease-in-out infinite"></div>
       <div style="position:absolute; bottom:-40vh; right:-15vw; width:70vw; height:80vh; border-radius:50%; background:radial-gradient(circle, rgba(0,120,97,.22) 0%, rgba(0,120,97,0) 65%); filter:blur(40px); animation:glowB 34s ease-in-out infinite"></div>
-      <div style="position:absolute; inset:0; background:radial-gradient(100% 60% at 50% 0%, rgba(5,7,6,0) 0%, #050706 100%)"></div>
+      <div style="position:absolute; inset:0; background:radial-gradient(100% 60% at 50% 0%, rgba(var(--bg-rgb),0) 0%, var(--bg) 100%)"></div>
     </div>
 
     <!-- Cursor spotlight grid (revealed on mouse move over desktop) -->
@@ -164,6 +168,18 @@ const jsonLd = {
       document.addEventListener('mouseleave', () => {
         grid.style.opacity = '0';
         if (pulse) pulse.style.opacity = '0';
+      });
+    }
+
+    // Licht/donker-schakelaar
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        const toLight = document.documentElement.getAttribute('data-theme') !== 'light';
+        if (toLight) document.documentElement.setAttribute('data-theme', 'light');
+        else document.documentElement.removeAttribute('data-theme');
+        try { localStorage.setItem('bttmline-theme', toLight ? 'light' : 'dark'); } catch (e) {}
+        themeToggle.setAttribute('aria-pressed', String(toLight));
       });
     }
 
