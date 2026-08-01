@@ -177,8 +177,15 @@ const jsonLd = {
     try { if (localStorage.getItem('bttmline-theme') === 'light') userTheme = 'light'; } catch (e) {}
     let inverted = false;
 
+    let animTimer;
     const applyTheme = () => {
       const eff = inverted ? (userTheme === 'light' ? 'dark' : 'light') : userTheme;
+      const cur = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      if (eff === cur) return; // geen wissel nodig
+      // Zet dezelfde transition op alles tijdens de wissel, dan weer weg.
+      root.classList.add('theme-anim');
+      clearTimeout(animTimer);
+      animTimer = setTimeout(() => root.classList.remove('theme-anim'), 700);
       if (eff === 'light') root.setAttribute('data-theme', 'light');
       else root.removeAttribute('data-theme');
     };

@@ -83,21 +83,30 @@ a { color: var(--accent); text-decoration: none; }
 a:hover { color: var(--text); }
 img { max-width: 100%; }
 
-/* Vloeiende thema-overgang (o.a. voor de scroll-gestuurde omkering op de home).
-   :where() = 0 specificiteit, dus element-eigen transitions blijven winnen. */
-:where(section, article, aside, header, footer, div, p, span, li, h1, h2, h3, h4, blockquote, summary, details, input, textarea, button, svg) {
-  transition: background-color .5s ease, border-color .5s ease, color .5s ease, fill .5s ease;
+/* Vloeiende thema-overgang. Tijdens een wissel krijgt ALLES exact dezelfde
+   transition (zelfde duur + easing) via !important, zodat niets uit de maat
+   flitst. .theme-anim staat enkel aan tijdens de wissel zelf (gezet in JS),
+   zodat gewone hover-transities daarbuiten hun eigen timing houden. */
+html.theme-anim,
+html.theme-anim *,
+html.theme-anim *::before,
+html.theme-anim *::after {
+  transition: background-color .6s ease, border-color .6s ease, color .6s ease, fill .6s ease, box-shadow .6s ease, opacity .6s ease !important;
 }
 @media (prefers-reduced-motion: reduce) {
-  :where(section, article, aside, header, footer, div, p, span, li, h1, h2, h3, h4, blockquote, summary, details, input, textarea, button, svg) {
-    transition: none;
-  }
+  html.theme-anim,
+  html.theme-anim *,
+  html.theme-anim *::before,
+  html.theme-anim *::after { transition: none !important; }
 }
 
 ::selection { background: var(--green); color: #fff; }
 
-/* In licht thema het witte woordmerk-logo omkeren naar donker. */
-html[data-theme="light"] img[alt="BTTMLINE"] { filter: invert(1); }
+/* Woordmerk-logo: wit in donker, donkere variant in licht.
+   Het groene lijntje blijft in beide groen. */
+.logo-img-light { display: none; }
+html[data-theme="light"] .logo-img-dark { display: none; }
+html[data-theme="light"] .logo-img-light { display: block; }
 
 /* ---- keyframes (background motion) ---- */
 @keyframes drift {
