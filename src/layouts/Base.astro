@@ -171,56 +171,27 @@ const jsonLd = {
       });
     }
 
-    // ---- Thema-controller: gebruikersvoorkeur + scroll-gestuurde omkering ----
+    // ---- Licht/donker-schakelaar (gebruikersvoorkeur) ----
+    // De omgekeerde band op de home is puur CSS; hier enkel de handmatige
+    // wissel, met een korte uniforme crossfade zodat alles synchroon loopt.
     const root = document.documentElement;
     let userTheme = 'dark';
     try { if (localStorage.getItem('bttmline-theme') === 'light') userTheme = 'light'; } catch (e) {}
-    let inverted = false;
 
-    let animTimer;
-    const applyTheme = () => {
-      const eff = inverted ? (userTheme === 'light' ? 'dark' : 'light') : userTheme;
-      const cur = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-      if (eff === cur) return; // geen wissel nodig
-      // Zet dezelfde transition op alles tijdens de wissel, dan weer weg.
-      root.classList.add('theme-anim');
-      clearTimeout(animTimer);
-      animTimer = setTimeout(() => root.classList.remove('theme-anim'), 700);
-      if (eff === 'light') root.setAttribute('data-theme', 'light');
-      else root.removeAttribute('data-theme');
-    };
-    applyTheme();
-
-    // Licht/donker-schakelaar
     const themeToggle = document.querySelector('.theme-toggle');
     if (themeToggle) {
+      let animTimer;
       themeToggle.setAttribute('aria-pressed', String(userTheme === 'light'));
       themeToggle.addEventListener('click', () => {
         userTheme = userTheme === 'light' ? 'dark' : 'light';
+        root.classList.add('theme-anim');
+        clearTimeout(animTimer);
+        animTimer = setTimeout(() => root.classList.remove('theme-anim'), 700);
+        if (userTheme === 'light') root.setAttribute('data-theme', 'light');
+        else root.removeAttribute('data-theme');
         try { localStorage.setItem('bttmline-theme', userTheme); } catch (e) {}
         themeToggle.setAttribute('aria-pressed', String(userTheme === 'light'));
-        applyTheme();
       });
-    }
-
-    // Scroll-band: keer het thema vloeiend om tussen #theme-flip-start en
-    // #theme-flip-end (schakelt op halve schermhoogte, ongeacht licht/donker).
-    const flipStart = document.getElementById('theme-flip-start');
-    const flipEnd = document.getElementById('theme-flip-end');
-    if (flipStart && flipEnd) {
-      let ticking = false;
-      const evaluate = () => {
-        ticking = false;
-        const trigger = window.scrollY + window.innerHeight * 0.5;
-        const startY = flipStart.getBoundingClientRect().top + window.scrollY;
-        const endY = flipEnd.getBoundingClientRect().top + window.scrollY;
-        const inBand = trigger >= startY && trigger < endY;
-        if (inBand !== inverted) { inverted = inBand; applyTheme(); }
-      };
-      const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(evaluate); } };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll, { passive: true });
-      evaluate();
     }
 
   </script>

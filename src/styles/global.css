@@ -65,6 +65,50 @@ html[data-theme="light"] {
   color-scheme: light;
 }
 
+/* ============================================================
+   Omgekeerde band (home): deze sectie draagt vast het TEGENOVER-
+   gestelde palet. Geen JS, geen per-element geflits — je scrollt
+   simpelweg een andersgekleurd blok in. De boven- en onderrand
+   vervagen zacht (transparant) zodat het mooi in de pagina overloopt.
+   ============================================================ */
+.theme-invert {
+  /* licht palet wanneer de pagina donker is */
+  --fg: 24, 28, 22;
+  --ov: 0, 0, 0;
+  --bg-rgb: 245, 246, 244;
+  --bg: #F5F6F4;
+  --panel: #FFFFFF;
+  --panel-hover: #EEF1EC;
+  --tile-hover: #EEF1EC;
+  --alt: #EFF2EC;
+  --footer: #ECEFE9;
+  --text: #14170F;
+  --accent: #06795E;
+
+  color: var(--text);
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    var(--bg) 96px,
+    var(--bg) calc(100% - 96px),
+    transparent 100%
+  );
+}
+/* donker palet wanneer de pagina licht is */
+html[data-theme="light"] .theme-invert {
+  --fg: 242, 245, 243;
+  --ov: 255, 255, 255;
+  --bg-rgb: 5, 7, 6;
+  --bg: #050706;
+  --panel: #080B0A;
+  --panel-hover: #0A0F0D;
+  --tile-hover: #0B100E;
+  --alt: #070A09;
+  --footer: #040605;
+  --text: #F2F5F3;
+  --accent: #2BD8A8;
+}
+
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
