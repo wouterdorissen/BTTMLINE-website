@@ -86,13 +86,7 @@ html[data-theme="light"] {
   --accent: #06795E;
 
   color: var(--text);
-  background: linear-gradient(
-    to bottom,
-    transparent 0,
-    var(--bg) 96px,
-    var(--bg) calc(100% - 96px),
-    transparent 100%
-  );
+  background: var(--bg);
 }
 /* donker palet wanneer de pagina licht is */
 html[data-theme="light"] .theme-invert {
