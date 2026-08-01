@@ -146,8 +146,10 @@ html.theme-anim *::after {
 
 ::selection { background: var(--green); color: #fff; }
 
-/* Woordmerk-logo: wit in donker, donkere variant in licht.
-   Het groene lijntje blijft in beide groen. */
+/* Woordmerk-logo: wit in donker, donkere variant (zwarte tekst, groen
+   lijntje) in licht. Display via klassen — geen inline display, anders
+   wint dat van deze regels. */
+.logo-img-dark { display: block; }
 .logo-img-light { display: none; }
 html[data-theme="light"] .logo-img-dark { display: none; }
 html[data-theme="light"] .logo-img-light { display: block; }
