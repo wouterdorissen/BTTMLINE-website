@@ -83,6 +83,17 @@ a { color: var(--accent); text-decoration: none; }
 a:hover { color: var(--text); }
 img { max-width: 100%; }
 
+/* Vloeiende thema-overgang (o.a. voor de scroll-gestuurde omkering op de home).
+   :where() = 0 specificiteit, dus element-eigen transitions blijven winnen. */
+:where(section, article, aside, header, footer, div, p, span, li, h1, h2, h3, h4, blockquote, summary, details, input, textarea, button, svg) {
+  transition: background-color .5s ease, border-color .5s ease, color .5s ease, fill .5s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where(section, article, aside, header, footer, div, p, span, li, h1, h2, h3, h4, blockquote, summary, details, input, textarea, button, svg) {
+    transition: none;
+  }
+}
+
 ::selection { background: var(--green); color: #fff; }
 
 /* In licht thema het witte woordmerk-logo omkeren naar donker. */

@@ -171,16 +171,49 @@ const jsonLd = {
       });
     }
 
+    // ---- Thema-controller: gebruikersvoorkeur + scroll-gestuurde omkering ----
+    const root = document.documentElement;
+    let userTheme = 'dark';
+    try { if (localStorage.getItem('bttmline-theme') === 'light') userTheme = 'light'; } catch (e) {}
+    let inverted = false;
+
+    const applyTheme = () => {
+      const eff = inverted ? (userTheme === 'light' ? 'dark' : 'light') : userTheme;
+      if (eff === 'light') root.setAttribute('data-theme', 'light');
+      else root.removeAttribute('data-theme');
+    };
+    applyTheme();
+
     // Licht/donker-schakelaar
     const themeToggle = document.querySelector('.theme-toggle');
     if (themeToggle) {
+      themeToggle.setAttribute('aria-pressed', String(userTheme === 'light'));
       themeToggle.addEventListener('click', () => {
-        const toLight = document.documentElement.getAttribute('data-theme') !== 'light';
-        if (toLight) document.documentElement.setAttribute('data-theme', 'light');
-        else document.documentElement.removeAttribute('data-theme');
-        try { localStorage.setItem('bttmline-theme', toLight ? 'light' : 'dark'); } catch (e) {}
-        themeToggle.setAttribute('aria-pressed', String(toLight));
+        userTheme = userTheme === 'light' ? 'dark' : 'light';
+        try { localStorage.setItem('bttmline-theme', userTheme); } catch (e) {}
+        themeToggle.setAttribute('aria-pressed', String(userTheme === 'light'));
+        applyTheme();
       });
+    }
+
+    // Scroll-band: keer het thema vloeiend om tussen #theme-flip-start en
+    // #theme-flip-end (schakelt op halve schermhoogte, ongeacht licht/donker).
+    const flipStart = document.getElementById('theme-flip-start');
+    const flipEnd = document.getElementById('theme-flip-end');
+    if (flipStart && flipEnd) {
+      let ticking = false;
+      const evaluate = () => {
+        ticking = false;
+        const trigger = window.scrollY + window.innerHeight * 0.5;
+        const startY = flipStart.getBoundingClientRect().top + window.scrollY;
+        const endY = flipEnd.getBoundingClientRect().top + window.scrollY;
+        const inBand = trigger >= startY && trigger < endY;
+        if (inBand !== inverted) { inverted = inBand; applyTheme(); }
+      };
+      const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(evaluate); } };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      evaluate();
     }
 
   </script>
