@@ -8,7 +8,7 @@ import Base from '../layouts/Base.astro';
 >
 
   <section class="sec sec-hero" style="max-width:1280px; margin:0 auto; padding:110px 32px 70px">
-    <div style="font-family:'Geist',sans-serif; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:24px">Contact</div>
+    <div style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:24px">Contact</div>
     <h1 style="font-family:Geist; font-weight:600; font-size:clamp(34px,4.4vw,64px); line-height:1.03; letter-spacing:-.04em; margin:0">Ready to automate?</h1>
     <p style="font-size:19px; line-height:1.6; color:rgba(var(--fg),.68); margin:32px 0 0; max-width:46ch">Boek een vrijblijvende call in of laat een berichtje achter. We horen elkaar snel!</p>
   </section>
@@ -16,38 +16,40 @@ import Base from '../layouts/Base.astro';
   <section style="border-top:1px solid rgba(var(--ov),.07)">
     <div class="sec stack-2" style="max-width:1280px; margin:0 auto; padding:70px 32px; display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); gap:20px">
       <div style="border:1px solid rgba(43,216,168,.28); background:var(--panel); padding:36px 34px">
-        <div style="font-family:'Geist',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:24px">Kies een moment</div>
-        <div style="border:1px dashed rgba(var(--ov),.16); background:repeating-linear-gradient(135deg, rgba(var(--ov),.025) 0 7px, transparent 7px 14px); min-height:380px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; text-align:center; padding:30px">
-          <div style="font-family:'Geist',sans-serif; font-size:12px; color:rgba(var(--fg),.55)">[ agenda-widget: 30 minuten ]</div>
-          <div style="font-family:'Geist',sans-serif; font-size:11px; color:rgba(var(--fg),.35); max-width:34ch; line-height:1.7">Boekingslink aan te leveren door BTTMLINE. Bij het boeken vragen we genoeg info om te kwalificeren.</div>
-        </div>
+        <div style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:24px">Kies een moment</div>
+        <div id="cal-inline" style="min-height:560px; width:100%; overflow:auto"></div>
+        <script type="text/javascript" is:inline>
+          (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+          Cal("init", { origin: "https://cal.com" });
+          Cal("inline", { elementOrSelector: "#cal-inline", calLink: "bttmline", config: { theme: "auto" } });
+        </script>
       </div>
       <div style="display:grid; gap:20px; align-content:start">
         <div style="border:1px solid rgba(var(--ov),.1); background:var(--panel); padding:32px 30px; display:grid; gap:22px">
           <div>
-            <div style="font-family:'Geist',sans-serif; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.4)">E-mail</div>
+            <div style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.4)">E-mail</div>
             <a href="mailto:info@bttmline.be" style="font-size:17px; display:inline-block; margin-top:6px">info@bttmline.be</a>
           </div>
           <div>
-            <div style="font-family:'Geist',sans-serif; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.4)">Telefoon</div>
+            <div style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.4)">Telefoon</div>
             <a href="tel:+32485769705" style="font-size:17px; display:inline-block; margin-top:6px">+32 485 76 97 05</a>
           </div>
           <div>
-            <div style="font-family:'Geist',sans-serif; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.4)">Adres</div>
+            <div style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.4)">Adres</div>
             <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x47c0de42887e7c4f:0xb563236af3566e64?sa=X&amp;ved=1t:8290&amp;ictx=111" target="_blank" rel="noopener noreferrer" style="font-size:17px; display:inline-block; margin-top:6px; color:rgba(var(--fg),.85)">Caetsbeekstraat 12, 3740 Bilzen-Hoeselt, België</a>
           </div>
           <div>
-            <div style="font-family:'Geist',sans-serif; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.4)">LinkedIn</div>
+            <div style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.4)">LinkedIn</div>
             <a href="https://www.linkedin.com/company/bttmline/" target="_blank" rel="noopener noreferrer" style="font-size:17px; display:inline-block; margin-top:6px">BTTMLINE op LinkedIn</a>
           </div>
         </div>
         <div style="border:1px solid rgba(var(--ov),.1); background:var(--panel); padding:32px 30px">
-          <div style="font-family:'Geist',sans-serif; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.4); margin-bottom:20px">Wat je overhoudt aan het gesprek</div>
+          <div style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.4); margin-bottom:20px">Wat je overhoudt aan het gesprek</div>
           <div style="display:grid; gap:14px">
             <div style="display:grid; grid-template-columns:20px 1fr; gap:12px; align-items:start"><span style="color:var(--accent); font-family:'Geist',sans-serif; font-size:13px">+</span><span style="font-size:15px; line-height:1.5">Een realistisch beeld van wat haalbaar is, en hoe snel.</span></div>
             <div style="display:grid; grid-template-columns:20px 1fr; gap:12px; align-items:start"><span style="color:var(--accent); font-family:'Geist',sans-serif; font-size:13px">+</span><span style="font-size:15px; line-height:1.5">Een duidelijke volgende stap.</span></div>
             <div style="display:grid; grid-template-columns:20px 1fr; gap:12px; align-items:start"><span style="color:var(--accent); font-family:'Geist',sans-serif; font-size:13px">+</span><span style="font-size:15px; line-height:1.5">Antwoorden op je concrete vragen.</span></div>
-            <div style="display:grid; grid-template-columns:20px 1fr; gap:12px; align-items:start"><span style="color:var(--accent); font-family:'Geist',sans-serif; font-size:13px">+</span><span style="font-size:15px; line-height:1.5">Gratis informatie, zonder verplichting.</span></div>
+            <div style="display:grid; grid-template-columns:20px 1fr; gap:12px; align-items:start"><span style="color:var(--accent); font-family:'Geist',sans-serif; font-size:13px">+</span><span style="font-size:15px; line-height:1.5">Kosteloze informatie, zonder verplichting.</span></div>
           </div>
         </div>
       </div>
@@ -57,7 +59,7 @@ import Base from '../layouts/Base.astro';
   <section style="border-top:1px solid rgba(var(--ov),.07)">
     <div class="sec stack-2" style="max-width:1280px; margin:0 auto; padding:80px 32px; display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:56px; align-items:start">
       <div>
-        <div style="font-family:'Geist',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:20px">Of schrijf ons</div>
+        <div style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:20px">Of schrijf ons</div>
         <h2 style="font-family:Geist; font-weight:600; font-size:clamp(28px,3.4vw,46px); line-height:1.05; letter-spacing:-.03em; margin:0 0 18px; text-wrap:balance">Laat een berichtje achter</h2>
         <p style="font-size:17px; line-height:1.6; color:rgba(var(--fg),.66); margin:0; max-width:44ch">Vertel kort waar je mee zit. We lezen alles zelf en antwoorden binnen één werkdag. Geen automatische funnel, gewoon een mens.</p>
       </div>
@@ -65,31 +67,31 @@ import Base from '../layouts/Base.astro';
       <form id="contact-form" method="POST" action="mailto:info@bttmline.be" enctype="text/plain" style="border:1px solid rgba(var(--ov),.1); background:var(--panel); padding:34px 32px; display:grid; gap:22px">
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px" class="form-row">
           <label style="display:grid; gap:8px">
-            <span style="font-family:'Geist',sans-serif; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.5)">Naam *</span>
+            <span style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.5)">Naam *</span>
             <input name="naam" type="text" required autocomplete="name" class="field" placeholder="Je naam" />
           </label>
           <label style="display:grid; gap:8px">
-            <span style="font-family:'Geist',sans-serif; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.5)">Bedrijf *</span>
+            <span style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.5)">Bedrijf *</span>
             <input name="bedrijf" type="text" required autocomplete="organization" class="field" placeholder="Bedrijfsnaam" />
           </label>
         </div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px" class="form-row">
           <label style="display:grid; gap:8px">
-            <span style="font-family:'Geist',sans-serif; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.5)">E-mail *</span>
+            <span style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.5)">E-mail *</span>
             <input name="email" type="email" required autocomplete="email" class="field" placeholder="jij@bedrijf.be" />
           </label>
           <label style="display:grid; gap:8px">
-            <span style="font-family:'Geist',sans-serif; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.5)">Telefoon *</span>
+            <span style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.5)">Telefoon *</span>
             <input name="telefoon" type="tel" required autocomplete="tel" class="field" placeholder="Je telefoonnummer" />
           </label>
         </div>
         <label style="display:grid; gap:8px">
-          <span style="font-family:'Geist',sans-serif; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.5)">Waar kunnen we mee helpen? *</span>
+          <span style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:rgba(var(--fg),.5)">Waar kunnen we mee helpen? *</span>
           <textarea name="bericht" required rows="5" class="field" placeholder="Vertel kort over je proces of vraag."></textarea>
         </label>
         <div style="display:flex; flex-wrap:wrap; align-items:center; gap:18px">
           <button type="submit" class="btn-cta" style="background:#007861; color:#FFFFFF; font-family:'Geist',sans-serif; font-size:13px; letter-spacing:.04em; padding:15px 26px; border:1px solid #00A583; cursor:pointer">Verstuur bericht</button>
-          <span id="form-status" role="status" aria-live="polite" style="font-family:'Geist',sans-serif; font-size:11px; color:rgba(var(--fg),.5)"></span>
+          <span id="form-status" role="status" aria-live="polite" style="font-family:'Geist',sans-serif; font-size:12px; color:rgba(var(--fg),.5)"></span>
         </div>
       </form>
     </div>

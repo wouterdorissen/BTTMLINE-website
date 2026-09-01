@@ -30,4 +30,4 @@ Soms is het probleem niet intelligentie, maar dat de tool niet aansluit op je ma
 
 Als echte engineers kiezen we de oplossing die het probleem oplost, niet degene die het best verkoopt. AI waar AI het verschil maakt. Automatisering, RPA of maatwerk waar dat slimmer is.
 
-Wil je weten waar jouw winst zit? Dat is precies wat we doen in een [gratis AI Automation Audit](/contact).
+Wil je weten waar jouw winst zit? Dat is precies wat we doen in een [kosteloze AI Automation Audit](/contact).

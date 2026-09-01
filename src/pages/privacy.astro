@@ -1,0 +1,92 @@
+---
+import Base from '../layouts/Base.astro';
+
+const secties = [
+  {
+    h: 'Wie zijn we',
+    p: [
+      'BTTMLINE is verantwoordelijk voor de verwerking van je persoonsgegevens zoals beschreven in dit beleid. Je bereikt ons op info@bttmline.be, +32 485 76 97 05, of op Caetsbeekstraat 12, 3740 Bilzen-Hoeselt, België.',
+    ],
+  },
+  {
+    h: 'Welke gegevens we verwerken',
+    p: [
+      'Gegevens die je zelf bezorgt via een formulier op deze site: je naam, bedrijf, e-mailadres, telefoonnummer en de inhoud van je bericht of sollicitatie.',
+      'Gegevens bij een webinar-inschrijving of een geboekte afspraak, die verlopen via externe diensten (zie “Externe diensten”).',
+      'Technische en gebruiksgegevens die automatisch worden verzameld wanneer je de site bezoekt, zoals je IP-adres, browsertype en de pagina’s die je bekijkt. Deze worden pas verzameld nadat je analytische cookies aanvaardt.',
+    ],
+  },
+  {
+    h: 'Waarvoor we ze gebruiken',
+    p: [
+      'Om je vraag of aanvraag te beantwoorden en je verder te helpen.',
+      'Om sollicitaties te beoordelen en met je in contact te treden.',
+      'Om onze webinars en afspraken te organiseren.',
+      'Om onze website te verbeteren op basis van geanonimiseerde gebruiksstatistieken, enkel met je toestemming.',
+    ],
+  },
+  {
+    h: 'Grondslag',
+    p: [
+      'We verwerken je gegevens op basis van je toestemming (bijvoorbeeld voor analytische cookies), de uitvoering van een overeenkomst of stappen op jouw verzoek (bijvoorbeeld een offerte of gesprek), en ons gerechtvaardigd belang om onze dienstverlening en site te verbeteren.',
+    ],
+  },
+  {
+    h: 'Cookies',
+    p: [
+      'We plaatsen functionele cookies die nodig zijn om de site te laten werken. Analytische cookies (via Zoho PageSense) laden we pas nadat je ze via de cookiemelding aanvaardt. Weiger je, dan blijven die uit.',
+      'Onderdelen zoals het boekingsvenster (Cal.com) en de spraakassistent laden externe scripts wanneer je die gebruikt. Je kan je keuze altijd wissen via de instellingen van je browser.',
+    ],
+  },
+  {
+    h: 'Externe diensten',
+    p: [
+      'We werken met verwerkers die gegevens namens ons of via hun dienst verwerken: Vercel (hosting), Zoho (analytics en formulieren), Cal.com (afspraken), ElevenLabs (spraakassistent) en Google Fonts (lettertypes). Sommige van deze partijen verwerken gegevens buiten de Europese Economische Ruimte; in dat geval zorgen we voor passende waarborgen.',
+    ],
+  },
+  {
+    h: 'Hoe lang we ze bewaren',
+    p: [
+      'We bewaren je gegevens niet langer dan nodig voor de doeleinden hierboven, of zolang de wet ons dat oplegt. Sollicitaties bewaren we tot maximaal één jaar, tenzij je ons vraagt ze eerder te verwijderen.',
+    ],
+  },
+  {
+    h: 'Je rechten',
+    p: [
+      'Je hebt het recht op inzage, correctie en verwijdering van je gegevens, en je kan bezwaar maken tegen of de beperking vragen van de verwerking, of je gegevens laten overdragen. Stuur daarvoor een bericht naar info@bttmline.be.',
+      'Ben je niet tevreden over hoe we met je gegevens omgaan, dan kan je klacht indienen bij de Gegevensbeschermingsautoriteit (gegevensbeschermingsautoriteit.be).',
+    ],
+  },
+  {
+    h: 'Wijzigingen',
+    p: [
+      'We kunnen dit privacybeleid aanpassen. De meest recente versie staat altijd op deze pagina.',
+    ],
+  },
+];
+---
+<Base
+  title="Privacybeleid — BTTMLINE"
+  description="Hoe BTTMLINE omgaat met je persoonsgegevens: welke gegevens we verwerken, waarvoor, en welke rechten je hebt."
+>
+
+  <section class="sec sec-hero" style="max-width:1280px; margin:0 auto; padding:110px 32px 60px">
+    <div style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:24px">Privacy</div>
+    <h1 style="font-family:Geist; font-weight:600; font-size:clamp(34px,4.4vw,64px); line-height:1.03; letter-spacing:-.04em; margin:0; max-width:20ch">Privacybeleid</h1>
+    <p style="font-size:18px; line-height:1.65; color:rgba(var(--fg),.66); margin:32px 0 0; max-width:60ch; text-wrap:pretty">We houden het kort en duidelijk. Hieronder lees je welke gegevens we verwerken, waarvoor, en wat je rechten zijn.</p>
+  </section>
+
+  <section style="border-top:1px solid rgba(var(--ov),.07)">
+    <div class="sec" style="max-width:900px; margin:0 auto; padding:70px 32px 90px; display:grid; gap:44px">
+      {secties.map((s) => (
+        <div>
+          <h2 style="font-family:Geist; font-weight:600; font-size:clamp(22px,2.4vw,30px); letter-spacing:-.02em; margin:0 0 16px">{s.h}</h2>
+          {s.p.map((para) => (
+            <p style="font-size:17px; line-height:1.65; color:rgba(var(--fg),.72); margin:0 0 12px; max-width:70ch">{para}</p>
+          ))}
+        </div>
+      ))}
+    </div>
+  </section>
+
+</Base>

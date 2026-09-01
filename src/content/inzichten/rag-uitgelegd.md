@@ -32,4 +32,4 @@ Je zou alles in de vraag kunnen plakken, maar dan loop je snel tegen grenzen aan
 
 RAG maakt een model niet slimmer, het geeft het betere input. Slechte of tegenstrijdige documenten geven slechte antwoorden. Structuur en kwaliteit van je bronnen bepalen het resultaat.
 
-Wil je weten of RAG past bij jouw documenten en vragen? Dat bekijken we in een [gratis AI Automation Audit](/contact).
+Wil je weten of RAG past bij jouw documenten en vragen? Dat bekijken we in een [kosteloze AI Automation Audit](/contact).

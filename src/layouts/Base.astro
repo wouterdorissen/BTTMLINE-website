@@ -94,8 +94,19 @@ const jsonLd = {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
-  <!-- Zoho PageSense -->
-  <script src="https://cdn-eu.pagesense.io/js/20118947447/8c86f22d0a644cd8a469c26a1b952d64.js" is:inline></script>
+  <!-- Zoho PageSense: enkel laden na cookietoestemming -->
+  <script is:inline>
+    (function () {
+      function loadAnalytics() {
+        if (window.__psLoaded) return; window.__psLoaded = true;
+        var s = document.createElement('script');
+        s.src = 'https://cdn-eu.pagesense.io/js/20118947447/8c86f22d0a644cd8a469c26a1b952d64.js';
+        document.head.appendChild(s);
+      }
+      window.__bttmlineLoadAnalytics = loadAnalytics;
+      try { if (localStorage.getItem('bttmline-consent') === 'accepted') loadAnalytics(); } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <div style="position:relative; min-height:100vh; isolation:isolate">
@@ -196,6 +207,31 @@ const jsonLd = {
       });
     }
 
+  </script>
+
+  <!-- Cookiemelding -->
+  <div id="cookie-banner" class="cookie-banner" hidden>
+    <p>We gebruiken cookies om onze site te verbeteren. Analytische cookies laden we pas als je ze aanvaardt. Meer in ons <a href="/privacy">privacybeleid</a>.</p>
+    <div class="cookie-actions">
+      <button type="button" data-decline>Weigeren</button>
+      <button type="button" data-accept>Aanvaarden</button>
+    </div>
+  </div>
+  <script is:inline>
+    (function () {
+      var banner = document.getElementById('cookie-banner');
+      if (!banner) return;
+      var choice = null;
+      try { choice = localStorage.getItem('bttmline-consent'); } catch (e) {}
+      if (!choice) banner.hidden = false;
+      function set(v) {
+        try { localStorage.setItem('bttmline-consent', v); } catch (e) {}
+        banner.hidden = true;
+        if (v === 'accepted' && window.__bttmlineLoadAnalytics) window.__bttmlineLoadAnalytics();
+      }
+      banner.querySelector('[data-accept]').addEventListener('click', function () { set('accepted'); });
+      banner.querySelector('[data-decline]').addEventListener('click', function () { set('declined'); });
+    })();
   </script>
 
   <!-- ElevenLabs Convai-widget (Alex) -->

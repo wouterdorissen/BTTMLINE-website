@@ -228,7 +228,7 @@ html[data-theme="light"] .logo-img-light { display: block; }
 .nav-link:hover,
 .nav-links a[aria-current="page"] { color: var(--text) !important; }
 
-.btn-cta { transition: box-shadow .3s ease, background .3s ease; }
+.btn-cta { font-size: 14px !important; transition: box-shadow .3s ease, background .3s ease; }
 .btn-cta:hover {
   background: var(--green-hover) !important;
   box-shadow: 0 0 32px rgba(0, 120, 97, .55) !important;
@@ -245,6 +245,12 @@ html[data-theme="light"] .logo-img-light { display: block; }
   border-color: rgba(43, 216, 168, .55) !important;
   transform: translateY(-3px) !important;
   background: var(--panel-hover) !important;
+}
+
+/* Probleem -> Oplossing rijen (home): stapelen op kleine schermen */
+@media (max-width: 720px) {
+  .po-row { grid-template-columns: 1fr !important; gap: 14px !important; }
+  .po-arrow { transform: rotate(90deg); justify-self: start; }
 }
 
 .case { transition: border-color .3s ease; }
@@ -410,6 +416,26 @@ body.menu-open .mobile-menu { opacity: 1; visibility: visible; transform: none; 
   }
   .sec-hero { padding-top: 92px !important; }
 }
+
+/* Cookiemelding: compacte kaart linksonder (botst niet met de bot rechtsonder). */
+.cookie-banner {
+  position: fixed; left: 16px; bottom: 16px; z-index: 80;
+  width: min(460px, calc(100vw - 32px));
+  background: var(--panel); border: 1px solid rgba(var(--ov), .14);
+  padding: 18px 20px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+  box-shadow: 0 12px 44px rgba(0, 0, 0, .38);
+}
+.cookie-banner[hidden] { display: none; }
+.cookie-banner p { margin: 0; flex: 1 1 220px; font-size: 14px; line-height: 1.5; color: rgba(var(--fg), .72); }
+.cookie-banner a { color: var(--accent); }
+.cookie-banner .cookie-actions { display: flex; gap: 10px; }
+.cookie-banner button {
+  font-family: 'Geist', sans-serif; font-size: 13px; padding: 10px 16px; cursor: pointer;
+  border: 1px solid rgba(var(--ov), .18); background: none; color: var(--text);
+  transition: border-color .2s ease, background .2s ease;
+}
+.cookie-banner button[data-accept] { background: var(--green); color: #fff; border-color: var(--green-border); }
+.cookie-banner button:hover { border-color: rgba(43, 216, 168, .55); }
 
 /* Respect reduced-motion — disable background drift/glow and the
    cursor grid entirely. */

@@ -32,4 +32,4 @@ Bij BTTMLINE stopt een project niet bij de oplevering. We blijven tot je team er
 
 ## Voor je iets nieuws koopt
 
-Zit je met een tool die stof ligt te vangen? Gooi hem niet meteen weg. Vaak zit de fout niet in de tool, maar in hoe hij is ingebed. Dat is te herstellen. En koop je nog niets? Begin dan bij je proces, niet bij de licentie. Dat is precies waar een [gratis AI Automation Audit](/contact) mee begint.
+Zit je met een tool die stof ligt te vangen? Gooi hem niet meteen weg. Vaak zit de fout niet in de tool, maar in hoe hij is ingebed. Dat is te herstellen. En koop je nog niets? Begin dan bij je proces, niet bij de licentie. Dat is precies waar een [kosteloze AI Automation Audit](/contact) mee begint.

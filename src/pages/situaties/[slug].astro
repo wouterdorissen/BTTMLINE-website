@@ -1,0 +1,165 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const situaties = {
+  'starten': {
+    label: 'Nog niet gestart',
+    quote: '“We weten dat we iets moeten, maar niet waar te beginnen.”',
+    title: 'Je weet dat je iets met AI moet, maar niet waar te beginnen.',
+    situatie:
+      'Je voelt de druk dat iedereen met AI bezig is, en je wil niet achterblijven. Alleen: waar begin je? De ruis is groot en de beloftes zijn nog groter. Heel normaal, en je bent niet de enige.',
+    kenmerken: [
+      'Iedereen praat over AI, maar niemand legt uit wat het concreet voor jou betekent.',
+      'Je hebt het gevoel dat je achterloopt.',
+      'Je weet niet welke eerste stap zinvol is, en welke weggegooid geld is.',
+    ],
+    uitdagingen: [
+      'Kaf van koren scheiden in een overvol landschap.',
+      'Investeren in resultaat, niet in de hype.',
+      'Je team meekrijgen, zonder angst.',
+    ],
+    oplossingen: [
+      {
+        titel: 'Inspiratie en kennis',
+        desc: 'Sessies en workshops die tonen wat vandaag echt kan, in mensentaal en zonder verkoopdoel. Je team denkt: kijk wat er mogelijk is.',
+        href: '/diensten',
+        link: 'Bekijk diensten',
+      },
+      {
+        titel: 'Start AI',
+        desc: 'Een gesubsidieerd instaptraject via Agoria en Vlaio. In een paar weken weet je waar automatisering en AI in jouw bedrijf renderen, met een concreet plan.',
+        href: '/diensten',
+        link: 'Ontdek Start AI',
+      },
+    ],
+  },
+  'vastgelopen': {
+    label: 'Ideeën, maar vast',
+    quote: '“We hebben ideeën, maar zitten vast.”',
+    title: 'Je hebt ideeën, maar weet niet wat eerst moet.',
+    situatie:
+      'Je hebt al ideeën, misschien zelfs al licenties gekocht, maar het komt niet van de grond. Vaak omdat er bij de tool is begonnen in plaats van bij het proces.',
+    kenmerken: [
+      'Je kocht licenties (zoals Copilot), maar niemand gebruikt ze echt.',
+      'Er zijn ideeën genoeg, maar geen prioriteit.',
+      'Je weet niet waar voor jou de meeste winst zit.',
+    ],
+    uitdagingen: [
+      'Van een vaag idee naar een concreet, haalbaar project.',
+      'De juiste use case kiezen in plaats van alles tegelijk.',
+      'Weten wat AI is, en wat beter gewone automatisering of maatwerk is.',
+    ],
+    oplossingen: [
+      {
+        titel: 'Strategie en procesmapping',
+        desc: 'We brengen je processen, bottlenecks en frustraties in kaart en classificeren elke stap in het juiste oplossingstype: van AI tot gewone automatisering tot mens.',
+        href: '/diensten',
+        link: 'Bekijk diensten',
+      },
+      {
+        titel: 'Een concreet plan',
+        desc: 'Je krijgt een prioritering op impact, haalbaarheid en verwachte opbrengst, met een business case. Zo weet je waar je in investeert en wat het oplevert.',
+        href: '/contact',
+        link: 'Plan een gesprek',
+      },
+    ],
+  },
+  'werkt-niet': {
+    label: 'Al geprobeerd',
+    quote: '“We hebben iets geprobeerd, maar het werkt niet.”',
+    title: 'Je probeerde iets, maar het werkt niet zoals het moet.',
+    situatie:
+      'Je bouwde zelf iets, of kocht een tool, en het draait niet of maar half. Er is al geld in gegaan en je wil geen dure misser. Je zoekt iemand die je écht verder helpt.',
+    kenmerken: [
+      'Je hebt al iets geprobeerd dat blijft steken.',
+      'Je bent er al geld aan kwijt en loopt vast.',
+      'Je zoekt een partner die echt verder helpt, niet nog een demo.',
+    ],
+    uitdagingen: [
+      'Weten wat er misliep, en wat wél werkt.',
+      'Van een half werkende proof-of-concept naar iets dat jaren meegaat.',
+      'Je team er echt mee laten werken. Adoptie, niet enkel oplevering.',
+    ],
+    oplossingen: [
+      {
+        titel: 'Bouwen en begeleiden',
+        desc: 'We kijken wat er misliep, bepalen wat wél werkt, en bouwen en begeleiden tot je team er echt mee draait.',
+        href: '/diensten',
+        link: 'Bekijk diensten',
+      },
+      {
+        titel: 'Managed AI Operations',
+        desc: 'Na go-live monitoren, optimaliseren en uitbreiden we. Technologie die mee blijft groeien met je bedrijf.',
+        href: '/diensten',
+        link: 'Bekijk diensten',
+      },
+    ],
+  },
+};
+
+export function getStaticPaths() {
+  return ['starten', 'vastgelopen', 'werkt-niet'].map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const s = situaties[slug];
+---
+<Base
+  title={`${s.title} — BTTMLINE`}
+  description={s.situatie}
+>
+
+  <section class="sec sec-hero" style="max-width:1280px; margin:0 auto; padding:110px 32px 60px">
+    <div style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:24px">{s.label}</div>
+    <h1 style="font-family:Geist; font-weight:600; font-size:clamp(34px,4.4vw,64px); line-height:1.03; letter-spacing:-.04em; margin:0; max-width:22ch; text-wrap:balance">{s.title}</h1>
+    <p style="font-size:18px; line-height:1.65; color:rgba(var(--fg),.66); margin:32px 0 0; max-width:60ch; text-wrap:pretty">{s.situatie}</p>
+    <div style="font-family:'Geist',sans-serif; font-size:15px; color:rgba(var(--fg),.5); margin-top:20px">{s.quote}</div>
+  </section>
+
+  <section style="border-top:1px solid rgba(var(--ov),.07)">
+    <div class="sec stack-2" style="max-width:1280px; margin:0 auto; padding:80px 32px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:64px; align-items:start">
+      <div>
+        <div style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:20px">Herkenbaar?</div>
+        <h2 style="font-family:Geist; font-weight:600; font-size:clamp(26px,3vw,38px); line-height:1.1; letter-spacing:-.03em; margin:0 0 24px">Kenmerken die we vaak horen</h2>
+        <div style="display:grid; gap:12px">
+          {s.kenmerken.map((k) => (
+            <div style="display:grid; grid-template-columns:22px 1fr; gap:12px; align-items:start"><span style="color:var(--accent); font-family:'Geist',sans-serif; font-size:14px">–</span><span style="font-size:16px; line-height:1.55; color:rgba(var(--fg),.72)">{k}</span></div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:20px">De uitdagingen</div>
+        <h2 style="font-family:Geist; font-weight:600; font-size:clamp(26px,3vw,38px); line-height:1.1; letter-spacing:-.03em; margin:0 0 24px">Waar het op vastloopt</h2>
+        <div style="display:grid; gap:12px">
+          {s.uitdagingen.map((u) => (
+            <div style="display:grid; grid-template-columns:22px 1fr; gap:12px; align-items:start"><span style="color:var(--accent); font-family:'Geist',sans-serif; font-size:14px">→</span><span style="font-size:16px; line-height:1.55; color:rgba(var(--fg),.72)">{u}</span></div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid rgba(var(--ov),.07)">
+    <div class="sec" style="max-width:1280px; margin:0 auto; padding:90px 32px">
+      <div style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:20px">Oplossingen door BTTMLINE</div>
+      <h2 style="font-family:Geist; font-weight:600; font-size:clamp(28px,3.4vw,46px); line-height:1.05; letter-spacing:-.035em; margin:0 0 44px; max-width:22ch">Zo helpen we je verder</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px">
+        {s.oplossingen.map((o) => (
+          <div style="border:1px solid rgba(var(--ov),.1); background:var(--panel); padding:34px 30px; display:flex; flex-direction:column">
+            <div style="font-family:Geist; font-weight:600; font-size:22px; letter-spacing:-.02em; margin-bottom:14px">{o.titel}</div>
+            <p style="font-size:16px; line-height:1.6; color:rgba(var(--fg),.66); margin:0 0 24px">{o.desc}</p>
+            <a href={o.href} style="margin-top:auto; font-family:'Geist',sans-serif; font-size:13px; color:var(--accent)">{o.link} →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid rgba(var(--ov),.07)">
+    <div class="sec" style="max-width:1280px; margin:0 auto; padding:100px 32px; text-align:center">
+      <h2 style="font-family:Geist; font-weight:600; font-size:clamp(30px,4vw,52px); letter-spacing:-.035em; margin:0 0 28px; text-wrap:balance">Niet zeker of dit bij jou past? Vraag het gewoon.</h2>
+      <a class="btn-cta" href="/contact" style="display:inline-block; background:#007861; color:#FFFFFF; font-family:'Geist',sans-serif; padding:17px 26px; border:1px solid #00A583">Kosteloze AI Automation Audit</a>
+    </div>
+  </section>
+
+</Base>
