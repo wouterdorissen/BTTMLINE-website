@@ -228,7 +228,8 @@ html[data-theme="light"] .logo-img-light { display: block; }
 .nav-link:hover,
 .nav-links a[aria-current="page"] { color: var(--text) !important; }
 
-.btn-cta { font-size: 14px !important; transition: box-shadow .3s ease, background .3s ease; }
+.btn-cta { font-size: 15px !important; transition: box-shadow .3s ease, background .3s ease; }
+.btn-ghost { font-size: 15px !important; }
 .btn-cta:hover {
   background: var(--green-hover) !important;
   box-shadow: 0 0 32px rgba(0, 120, 97, .55) !important;
@@ -311,7 +312,7 @@ html[data-theme="light"] .logo-img-light { display: block; }
 }
 .nav-links { display: flex; gap: 28px; align-items: center; margin-left: auto; }
 .nav-links a {
-  font-family: var(--mono); font-size: 12px; letter-spacing: .1em;
+  font-family: var(--mono); font-size: 13px; letter-spacing: .1em;
   text-transform: uppercase; color: rgba(var(--fg), .62);
 }
 .header-actions { display: flex; align-items: center; gap: 16px; }
