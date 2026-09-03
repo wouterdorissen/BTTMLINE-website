@@ -131,9 +131,12 @@ const sessies = [
         <label style="display:grid; gap:8px"><span class="fl">E-mailadres *</span><input class="field" type="email" name="email" required autocomplete="email" /></label>
         <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:22px">
           <label style="display:grid; gap:8px"><span class="fl">Bedrijf / organisatie</span><input class="field" type="text" name="bedrijf" autocomplete="organization" /></label>
-          <label style="display:grid; gap:8px"><span class="fl">GSM</span><input class="field" type="tel" name="gsm" autocomplete="tel" /></label>
+          <label style="display:grid; gap:8px"><span class="fl">Functie</span><input class="field" type="text" name="functie" autocomplete="organization-title" /></label>
         </div>
-        <label style="display:grid; gap:8px; max-width:50%"><span class="fl">Postcode</span><input class="field" type="text" name="postcode" autocomplete="postal-code" /></label>
+        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:22px">
+          <label style="display:grid; gap:8px"><span class="fl">GSM</span><input class="field" type="tel" name="gsm" autocomplete="tel" /></label>
+          <label style="display:grid; gap:8px"><span class="fl">Postcode</span><input class="field" type="text" name="postcode" autocomplete="postal-code" /></label>
+        </div>
 
         <div style="border-top:1px solid rgba(var(--ov),.1); padding-top:22px; display:grid; gap:14px">
           <div class="fl" style="margin-bottom:2px">Ik schrijf me in voor</div>
@@ -226,6 +229,7 @@ const sessies = [
         p.set('naam', g('naam'));
         p.set('email', g('email'));
         p.set('bedrijf', g('bedrijf'));
+        p.set('functie', g('functie'));
         p.set('gsm', g('gsm'));
         p.set('postcode', g('postcode'));
         p.set('sessie_1_mensentaal', wf.sessie1.checked ? 'ja' : 'nee');
