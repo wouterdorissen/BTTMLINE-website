@@ -57,7 +57,7 @@ De cookiemelding blokkeert nu **alle** niet-essentiële derde partijen tot de be
 Als de repo op GitHub staat, kan GitHub Pages een (falende) build proberen. Er staat een `.nojekyll` in de repo om dat te neutraliseren. Zet GitHub Pages anders gewoon uit; de site draait via de gekozen host, niet via Pages.
 
 ## Nog te bezorgen content
-- Persoonlijke bio's voor Ben en Tom (staan nu op placeholder in `src/pages/team.astro`).
+- Eventueel persoonlijke bio's voor Ben en Tom toevoegen (nu staat er enkel de korte rolomschrijving in `src/pages/team.astro`).
 - Eventuele extra cases en beeldmateriaal.
 - Bevestiging dat BTTMLINE formeel geregistreerd is als **Start AI-partner** (staat zo vermeld op /start-ai).
 
