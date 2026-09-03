@@ -30,9 +30,16 @@ Pas in `astro.config.mjs` de regel `site: 'https://www.bttmline.be'` aan naar he
 
 ## Belangrijkste aandachtspunten (nog af te werken)
 
-### 1. Formulieren zijn nog niet productieklaar
-Het contactformulier, het open-sollicitatieformulier en het webinar-inschrijfformulier werken via `mailto`: ze openen de mailapp van de bezoeker met een klaargezette mail die hij zelf nog moet verzenden. Dat werkt niet betrouwbaar (geen ingestelde mailclient = geen mail, geen opslag, geen spam-bescherming, geen bevestiging).
-**Te doen:** vervang dit door een echt formulier-endpoint — bijvoorbeeld een Zoho-formulier, Formspree, Basin of een serverless functie. Zolang dat niet gebeurt, komen leads en inschrijvingen niet gegarandeerd binnen.
+### 1. Formulieren
+
+**Webinar-inschrijving (/inzichten) — werkt.** Dit formulier stuurt de inschrijving rechtstreeks naar een **Zapier-webhook** (catch hook). Zapier verwerkt de lead daarna verder (bevestigingsmail, Verse Vlaai nieuwsbrief-opt-in, CRM, ...).
+- Webhook-URL staat in `src/pages/inzichten.astro` (constante `WEBHOOK`): `https://hooks.zapier.com/hooks/catch/3860734/4hfwms1/`. Wil je de bestemming wijzigen, pas daar de URL aan (en de Zap in Zapier).
+- Verstuurde velden: `voornaam`, `naam`, `email`, `bedrijf`, `gsm`, `postcode`, `sessie_1_mensentaal` / `sessie_2_fouten` / `sessie_3_automatisering` (ja/nee), `sessies` (samenvatting), `nieuwsbrief` (ja/nee), `bron`.
+- Er zit een verborgen honeypot-veld (`website`) in tegen botspam. De privacy-akkoordlink wijst naar `/privacy` (BTTMLINE).
+- Let op: de webhook-URL staat in de client-side code (onvermijdelijk bij een statische site). Wie de URL kent, kan er in theorie naar posten. De honeypot vangt simpele bots; voor meer bescherming kan je in Zapier een filter/validatie of captcha toevoegen.
+
+**Contact- en sollicitatieformulier — nog `mailto`.** Deze twee openen de mailapp van de bezoeker met een klaargezette mail die hij zelf nog moet verzenden. Dat is niet betrouwbaar (geen ingestelde mailclient = geen mail, geen opslag, geen bevestiging).
+**Te doen:** zet ze op dezelfde manier op een webhook (Zapier) of een echt endpoint (Zoho/Formspree/serverless).
 
 ### 2. Cookie-consent
 De cookiemelding blokkeert nu **alle** niet-essentiële derde partijen tot de bezoeker aanvaardt: de analytics (Zoho PageSense), de AI-spraakassistent (ElevenLabs) en het boekingsvenster (Cal.com, dat op de contactpagina pas laadt na een extra klik). Weigert de bezoeker, dan laadt niets daarvan.
