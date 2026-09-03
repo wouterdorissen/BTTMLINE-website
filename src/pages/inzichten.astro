@@ -5,91 +5,232 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('inzichten', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
+
+const sessies = [
+  {
+    nr: 'Sessie 1',
+    datum: 'Donderdag 24 september 2026',
+    tijd: '10:30 – 11:30',
+    titel: 'AI in mensentaal',
+    kort: 'De perfecte startsessie, met live demo. Leer wat AI is, hoe het werkt en wat je ermee kan.',
+    volledig: 'AI in mensentaal: wat is het, hoe werkt het en wat kan je ermee?',
+    intro:
+      'Iedereen praat over AI. Je hoort er dagelijks van alles over in het nieuws, maar wat is het eigenlijk? Hoe werkt artificiële intelligentie? En hoe kan je het gebruiken om je werk en leven te ondersteunen? In dit eerste webinar geven Ben en Wouter je een nuchter, helder beeld, in mensentaal.',
+    leren: [
+      'Wat is AI en wat is het niet',
+      'Het verschil tussen AI en genAI',
+      'Wat is de beste AI, welke moet je gebruiken',
+      'Hoe een taalmodel eigenlijk werkt',
+      'Waarom AI-modellen “hallucineren”',
+      'Waar AI goed in is, en waarin niet',
+      'Live demo: AI correct gebruiken (prompten)',
+      'Tools en tips om zelf mee aan de slag te gaan',
+      'Q&A',
+    ],
+  },
+  {
+    nr: 'Sessie 2',
+    datum: 'Donderdag 29 oktober 2026',
+    tijd: '10:30 – 11:30',
+    titel: 'De 4 meest gemaakte fouten in AI-projecten',
+    kort: 'De meeste AI-projecten mislukken. Niet door de technologie, maar door de aanpak. Leer de vier klassieke fouten vermijden.',
+    volledig: 'De 4 meest gemaakte fouten in AI-projecten (en hoe het wél moet)',
+    intro:
+      'De meeste AI-projecten mislukken niet door de technologie, maar door de aanpak. Bedrijven kopen licenties voor iedereen en gaan pas daarna zoeken waarvoor ze dienen. In dit tweede webinar overlopen Ben en Wouter de vier fouten die telkens opnieuw opduiken bij de start van een AI-project, en tonen ze hoe je het wél moet aanpakken.',
+    leren: [
+      'De vier meest gemaakte fouten',
+      'Waarom je begint bij je proces',
+      'Hoe je je processen en frustraties in kaart brengt',
+      'Waar de bottlenecks zitten, en waar de echte winst zit',
+      'Hoe je beslist of je oplossing een AI-oplossing moet zijn of niet',
+      'Hoe je er zelf aan begint, met onze handige template',
+      'Q&A',
+    ],
+  },
+  {
+    nr: 'Sessie 3',
+    datum: 'Donderdag 26 november 2026',
+    tijd: '10:30 – 11:30',
+    titel: 'AI-automatisering in de praktijk: drie cases',
+    kort: 'Hoe zien écht werkende oplossingen eruit, en wat brengen ze op? Drie echte cases, van simpel tot geavanceerd.',
+    volledig: 'AI-automatisering in de praktijk: drie cases van simpel tot pro',
+    intro:
+      'Je hoort veel over AI en automatisering, maar hoe zien écht werkende oplossingen er nu uit in de praktijk? En wat brengen ze effectief op? In dit derde webinar tonen Ben en Wouter drie echte automatiseringsprojecten, van simpel tot geavanceerd. Laat je inspireren door hoe AI en automatisering praktisch in zijn werk gaan en hoe jij deze of soortgelijke oplossingen kan gebruiken in je eigen bedrijf.',
+    leren: [
+      'AI-managementassistent: een agent die je mails scant, drafts opstelt, bestanden uitleest, meetings plant en samenvat, en nog zo veel meer',
+      'AI-klantendienstagent: een agent die inkomende vragen dispatcht en naar de juiste mensen routeert, opvolgt, antwoorden klaarzet, bestanden leest en overzet',
+      'Totaalautomatisering van een complex proces: aanvragen automatisch indienen op overheidswebsites, documenten ondertekenen en versturen, alles beheren en terugkoppelen naar het ERP, volledig op maat',
+      'Niet alles is AI: veel winst zit in slimme automatisering en maatwerk',
+      'Garbage in, garbage out: ken je data en processen voor je automatiseert',
+      'Verandering slaagt alleen mét de mensen mee',
+      'Q&A',
+    ],
+  },
+];
 ---
 <Base
   current="/inzichten"
-  title="Inzichten — BTTMLINE"
-  description="Wij delen wat we weten. Webinars met Verse Vlaai en korte inzichten over AI en automatisering, in mensentaal en zonder hype."
+  title="Kosteloze AI-webinars — Verse Vlaai × BTTMLINE"
+  description="Drie kosteloze AI-webinars van Verse Vlaai en BTTMLINE. Van de basis tot gevorderd niveau: AI in mensentaal, de 4 fouten in AI-projecten, en automatisering in de praktijk. Met Ben Jorissen en Wouter Dorissen."
 >
 
-  <section class="sec sec-hero" style="max-width:1280px; margin:0 auto; padding:110px 32px 70px">
-    <div style="font-family:'Geist',sans-serif; font-size:14px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:24px">Inzichten</div>
-    <h1 style="font-family:Geist; font-weight:600; font-size:clamp(34px,4.4vw,64px); line-height:1.03; letter-spacing:-.04em; margin:0">Wij delen wat we weten.</h1>
-    <p style="font-size:18px; line-height:1.65; color:rgba(var(--fg),.66); margin:36px 0 0; max-width:60ch; text-wrap:pretty">Iedereen roept dat AI alles verandert. Wij tonen hoe het echt werkt, in mensentaal, zonder hype. Volg onze webinars en lees onze inzichten om op de hoogte te blijven.</p>
-  </section>
-
-  <section style="border-top:1px solid rgba(var(--ov),.07)">
-    <div class="sec" style="max-width:1280px; margin:0 auto; padding:80px 32px">
-      <div style="border:1px solid rgba(43,216,168,.28); background:linear-gradient(180deg, rgba(0,120,97,.14) 0%, var(--panel) 60%); padding:44px 40px">
-        <div style="font-family:'Geist',sans-serif; font-size:14px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:20px">Webinarreeks</div>
-        <h2 style="font-family:Geist; font-weight:600; font-size:clamp(28px,3.4vw,46px); line-height:1.05; letter-spacing:-.03em; margin:0 0 18px; max-width:28ch">De AI-webinarreeks van BTTMLINE en Verse Vlaai</h2>
-        <p style="font-size:17px; line-height:1.6; color:rgba(var(--fg),.68); margin:0 0 36px; max-width:56ch">Drie sessies, drie momenten in je AI-traject. Kosteloos, praktisch, met live demo. Schrijf je in voor de hele reeks.</p>
-        <div style="display:grid; gap:1px; background:rgba(var(--ov),.1); border:1px solid rgba(var(--ov),.1); margin-bottom:36px">
-          <div class="webinar-row" style="background:var(--panel); padding:24px 26px; display:grid; grid-template-columns:180px minmax(0,1fr) auto; gap:24px; align-items:center">
-            <div style="font-family:'Geist',sans-serif; font-size:14px; color:var(--accent)">24 sep, 10:30</div>
-            <div>
-              <div style="font-family:Geist; font-weight:600; font-size:19px; letter-spacing:-.02em">Intro tot AI</div>
-              <div style="font-size:14px; color:rgba(var(--fg),.55); margin-top:4px">Voor wie nog niet gestart is.</div>
-            </div>
-            <div class="webinar-index" style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.4)">SESSIE 01</div>
-          </div>
-          <div class="webinar-row" style="background:var(--panel); padding:24px 26px; display:grid; grid-template-columns:180px minmax(0,1fr) auto; gap:24px; align-items:center">
-            <div style="font-family:'Geist',sans-serif; font-size:14px; color:var(--accent)">22 okt, 10:30</div>
-            <div>
-              <div style="font-family:Geist; font-weight:600; font-size:19px; letter-spacing:-.02em">Definiëren van een AI-project in je bedrijf</div>
-              <div style="font-size:14px; color:rgba(var(--fg),.55); margin-top:4px">Voor wie ideeën heeft maar vastzit.</div>
-            </div>
-            <div class="webinar-index" style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.4)">SESSIE 02</div>
-          </div>
-          <div class="webinar-row" style="background:var(--panel); padding:24px 26px; display:grid; grid-template-columns:180px minmax(0,1fr) auto; gap:24px; align-items:center">
-            <div style="font-family:'Geist',sans-serif; font-size:14px; color:var(--accent)">26 nov, 10:30</div>
-            <div>
-              <div style="font-family:Geist; font-weight:600; font-size:19px; letter-spacing:-.02em">AI-cases en learnings uit de praktijk</div>
-              <div style="font-size:14px; color:rgba(var(--fg),.55); margin-top:4px">Voor wie al iets probeerde.</div>
-            </div>
-            <div class="webinar-index" style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.4)">SESSIE 03</div>
-          </div>
-        </div>
-        <div style="display:flex; flex-wrap:wrap; align-items:center; gap:20px">
-          <a class="btn-cta" href="/contact" style="display:inline-block; background:#007861; color:#FFFFFF; font-family:'Geist',sans-serif; font-size:14px; padding:16px 24px; border:1px solid #00A583">Schrijf je in voor de reeks</a>
-          <span style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.42)">Na afloop: opnames en downloadbaar materiaal per sessie.</span>
-        </div>
-      </div>
+  <section class="sec sec-hero" style="max-width:1280px; margin:0 auto; padding:110px 32px 50px">
+    <div style="font-family:'Geist',sans-serif; font-size:14px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:24px">Webinarreeks · Verse Vlaai × BTTMLINE</div>
+    <h1 style="font-family:Geist; font-weight:600; font-size:clamp(34px,4.4vw,64px); line-height:1.03; letter-spacing:-.04em; margin:0; max-width:20ch; text-wrap:balance">Drie kosteloze AI-webinars, van basis tot gevorderd.</h1>
+    <p style="font-size:18px; line-height:1.65; color:rgba(var(--fg),.68); margin:32px 0 0; max-width:60ch; text-wrap:pretty">Drie donderdagen, drie uur kennis, nul euro. Samen met Ben Jorissen van BTTMLINE en Wouter Dorissen van Verse Vlaai. Drie sessies die op elkaar voortbouwen: start met de basis, leer de klassieke fouten vermijden, en ontdek hoe echte automatiseringen eruitzien in de praktijk.</p>
+    <div style="display:flex; flex-wrap:wrap; gap:14px; margin-top:32px">
+      <a class="btn-cta" href="#inschrijven" style="background:#007861; color:#FFFFFF; font-family:'Geist',sans-serif; padding:16px 26px; border:1px solid #00A583">Schrijf je in</a>
     </div>
   </section>
 
   <section style="border-top:1px solid rgba(var(--ov),.07)">
-    <div class="sec" style="max-width:1280px; margin:0 auto; padding:80px 32px">
-      <div style="display:flex; justify-content:space-between; align-items:end; gap:24px; flex-wrap:wrap; margin-bottom:36px">
-        <h2 style="font-family:Geist; font-weight:600; font-size:clamp(28px,3.4vw,44px); letter-spacing:-.035em; margin:0">Blog en korte inzichten</h2>
-        <div style="font-family:'Geist',sans-serif; font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:rgba(var(--fg),.42)">Demystifying AI · Praktijk · Niet alles is AI</div>
-      </div>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px">
-        {posts.map((post) => (
-          <a class="card" href={`/inzichten/${post.id}`} style="display:block; border:1px solid rgba(var(--ov),.1); background:var(--panel); color:var(--text)">
-            <div style="border-bottom:1px solid rgba(var(--ov),.1); height:150px; background:repeating-linear-gradient(135deg, rgba(var(--ov),.035) 0 7px, transparent 7px 14px); display:flex; align-items:end; padding:16px">
-              <span style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.4)">[ beeld ]</span>
+    <div class="sec" style="max-width:1000px; margin:0 auto; padding:70px 32px 40px; display:grid; gap:20px">
+      {sessies.map((s) => (
+        <div style="border:1px solid rgba(var(--ov),.1); background:var(--panel); padding:34px 34px">
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:16px; margin-bottom:18px">
+            <span style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); border:1px solid rgba(43,216,168,.35); padding:5px 10px">{s.nr}</span>
+            <span style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.6)">{s.datum}</span>
+            <span style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.6)">{s.tijd}</span>
+          </div>
+          <h2 style="font-family:Geist; font-weight:600; font-size:clamp(24px,2.8vw,34px); line-height:1.1; letter-spacing:-.03em; margin:0 0 12px">{s.titel}</h2>
+          <p style="font-size:17px; line-height:1.6; color:rgba(var(--fg),.68); margin:0; max-width:64ch">{s.kort}</p>
+
+          <details class="webinar-more">
+            <summary>Meer info</summary>
+            <div class="webinar-more-body">
+              <p style="font-family:Geist; font-weight:600; font-size:17px; color:var(--text); margin:0 0 14px">{s.volledig}</p>
+              <p style="font-size:16px; line-height:1.65; color:rgba(var(--fg),.7); margin:0 0 20px">{s.intro}</p>
+              <div style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:12px">Wat ga je leren</div>
+              <div style="display:grid; gap:10px">
+                {s.leren.map((l) => (
+                  <div style="display:grid; grid-template-columns:20px 1fr; gap:10px; align-items:start"><span style="color:var(--accent); font-family:'Geist',sans-serif; font-size:14px">+</span><span style="font-size:16px; line-height:1.5; color:rgba(var(--fg),.72)">{l}</span></div>
+                ))}
+              </div>
+              <p style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.55); margin:20px 0 0">Sprekers: <strong style="color:var(--text)">Ben Jorissen</strong> (BTTMLINE) en <strong style="color:var(--text)">Wouter Dorissen</strong> (Verse Vlaai)</p>
             </div>
-            <div style="padding:26px">
+          </details>
+
+          <a href="#inschrijven" style="display:inline-block; margin-top:22px; font-family:'Geist',sans-serif; font-size:14px; color:var(--accent)">Schrijf je in →</a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="inschrijven" style="border-top:1px solid rgba(var(--ov),.07)">
+    <div class="sec" style="max-width:760px; margin:0 auto; padding:80px 32px 40px">
+      <div style="font-family:'Geist',sans-serif; font-size:14px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:18px">Inschrijven</div>
+      <h2 style="font-family:Geist; font-weight:600; font-size:clamp(28px,3.4vw,44px); letter-spacing:-.035em; margin:0 0 12px">Schrijf je in</h2>
+      <p style="font-size:17px; line-height:1.6; color:rgba(var(--fg),.66); margin:0 0 34px">Vul je gegevens in en kies je sessies. Kosteloos, zonder verplichtingen.</p>
+
+      <form id="webinar-form" style="border:1px solid rgba(var(--ov),.1); background:var(--panel); padding:34px 32px; display:grid; gap:22px">
+        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:22px">
+          <label style="display:grid; gap:8px"><span class="fl">Voornaam *</span><input class="field" type="text" name="voornaam" required autocomplete="given-name" /></label>
+          <label style="display:grid; gap:8px"><span class="fl">Naam *</span><input class="field" type="text" name="naam" required autocomplete="family-name" /></label>
+        </div>
+        <label style="display:grid; gap:8px"><span class="fl">E-mailadres *</span><input class="field" type="email" name="email" required autocomplete="email" /></label>
+        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:22px">
+          <label style="display:grid; gap:8px"><span class="fl">Bedrijf / organisatie</span><input class="field" type="text" name="bedrijf" autocomplete="organization" /></label>
+          <label style="display:grid; gap:8px"><span class="fl">GSM</span><input class="field" type="tel" name="gsm" autocomplete="tel" /></label>
+        </div>
+        <label style="display:grid; gap:8px; max-width:50%"><span class="fl">Postcode</span><input class="field" type="text" name="postcode" autocomplete="postal-code" /></label>
+
+        <div style="border-top:1px solid rgba(var(--ov),.1); padding-top:22px; display:grid; gap:14px">
+          <div class="fl" style="margin-bottom:2px">Ik schrijf me in voor</div>
+          <label class="cb"><input type="checkbox" name="sessie1" checked /><span><span class="cb-t">AI in mensentaal</span><span class="cb-d">Donderdag 24 september, 10:30 – 11:30</span></span></label>
+          <label class="cb"><input type="checkbox" name="sessie2" checked /><span><span class="cb-t">De 4 meest gemaakte fouten in AI-projecten</span><span class="cb-d">Donderdag 29 oktober, 10:30 – 11:30</span></span></label>
+          <label class="cb"><input type="checkbox" name="sessie3" checked /><span><span class="cb-t">AI-automatisering in de praktijk: drie cases</span><span class="cb-d">Donderdag 26 november, 10:30 – 11:30</span></span></label>
+        </div>
+
+        <label class="cb" style="border-top:1px solid rgba(var(--ov),.1); padding-top:22px"><input type="checkbox" name="newsletter" checked /><span class="cb-t" style="font-weight:400; color:rgba(var(--fg),.72)">Schrijf me in voor Verse Vlaai, de kosteloze wekelijkse AI-nieuwsbrief voor Vlaamse ondernemers en professionals, geschreven door Wouter Dorissen.</span></label>
+
+        <label class="cb"><input type="checkbox" name="privacy" required /><span class="cb-t" style="font-weight:400; font-size:14px; color:rgba(var(--fg),.55)">Ik ga akkoord met de privacyverklaring van <a href="https://www.versevlaai.be/privacy" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Verse Vlaai</a> en <a href="/privacy" style="color:var(--accent)">BTTMLINE</a>. *</span></label>
+
+        <div style="display:flex; flex-wrap:wrap; align-items:center; gap:18px">
+          <button type="submit" class="btn-cta" style="background:#007861; color:#FFFFFF; font-family:'Geist',sans-serif; padding:15px 26px; border:1px solid #00A583; cursor:pointer">Schrijf me in →</button>
+          <span id="webinar-status" role="status" aria-live="polite" style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.5)"></span>
+        </div>
+      </form>
+
+      <p style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.45); margin:24px 0 0; text-align:center">Een initiatief van <a href="https://www.versevlaai.be" target="_blank" rel="noopener noreferrer" style="color:rgba(var(--fg),.6)">Verse Vlaai</a> en <a href="/" style="color:rgba(var(--fg),.6)">BTTMLINE</a>.</p>
+    </div>
+  </section>
+
+  {posts.length > 0 && (
+    <section style="border-top:1px solid rgba(var(--ov),.07)">
+      <div class="sec" style="max-width:1280px; margin:0 auto; padding:70px 32px 90px">
+        <h2 style="font-family:Geist; font-weight:600; font-size:clamp(24px,3vw,40px); letter-spacing:-.035em; margin:0 0 36px">Korte inzichten</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px">
+          {posts.map((post) => (
+            <a class="card" href={`/inzichten/${post.id}`} style="display:block; border:1px solid rgba(var(--ov),.1); background:var(--panel); color:var(--text); padding:26px 28px">
               <div style="font-family:'Geist',sans-serif; font-size:14px; letter-spacing:.14em; color:var(--accent); text-transform:uppercase">{post.data.category}</div>
-              <div style="font-family:Geist; font-weight:600; font-size:21px; line-height:1.24; letter-spacing:-.02em; margin-top:14px">{post.data.title}</div>
+              <div style="font-family:Geist; font-weight:600; font-size:20px; line-height:1.24; letter-spacing:-.02em; margin-top:12px">{post.data.title}</div>
               <p style="font-size:15px; line-height:1.55; color:rgba(var(--fg),.6); margin:10px 0 0">{post.data.summary}</p>
-              <span style="display:inline-block; margin-top:18px; font-family:'Geist',sans-serif; font-size:14px; color:var(--accent)">Lees →</span>
-            </div>
-          </a>
-        ))}
-        <div style="border:1px dashed rgba(var(--ov),.14); background:repeating-linear-gradient(135deg, rgba(var(--ov),.025) 0 7px, transparent 7px 14px); display:flex; align-items:center; justify-content:center; padding:40px; text-align:center">
-          <div style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.42); line-height:1.7">[ ruimte voor korte video's<br />van 2 minuten ]</div>
+              <span style="display:inline-block; margin-top:16px; font-family:'Geist',sans-serif; font-size:14px; color:var(--accent)">Lees →</span>
+            </a>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
-  <section>
-    <div class="sec" style="max-width:1280px; margin:0 auto; padding:100px 32px; text-align:center">
-      <h2 style="font-family:Geist; font-weight:600; font-size:clamp(30px,4vw,52px); letter-spacing:-.035em; margin:0 0 28px">Vragen na het lezen of kijken?</h2>
-      <a class="btn-cta" href="/contact" style="display:inline-block; background:#007861; color:#FFFFFF; font-family:'Geist',sans-serif; font-size:14px; padding:17px 26px; border:1px solid #00A583">Kosteloze AI Automation Audit</a>
-    </div>
-  </section>
+  <style>
+    .webinar-more { margin-top: 20px; border-top: 1px solid rgba(var(--ov), .1); }
+    .webinar-more summary {
+      list-style: none; cursor: pointer; padding: 16px 0 0;
+      font-family: 'Geist', sans-serif; font-size: 14px; letter-spacing: .04em; color: var(--accent);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .webinar-more summary::-webkit-details-marker { display: none; }
+    .webinar-more summary::after { content: "▾"; font-size: 12px; transition: transform .25s ease; }
+    .webinar-more[open] summary::after { transform: rotate(180deg); }
+    .webinar-more-body { padding: 20px 0 4px; }
+
+    .fl { font-family: 'Geist', sans-serif; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: rgba(var(--fg), .5); }
+    .field {
+      width: 100%; background: var(--bg); border: 1px solid rgba(var(--ov), .14); color: var(--text);
+      font-family: Geist, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px 14px; outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .field:focus { border-color: rgba(43, 216, 168, .6); box-shadow: 0 0 0 3px rgba(0, 120, 97, .18); }
+    .cb { display: grid; grid-template-columns: 20px 1fr; gap: 12px; align-items: start; cursor: pointer; }
+    .cb input { margin-top: 3px; width: 16px; height: 16px; accent-color: #007861; }
+    .cb-t { font-family: Geist, sans-serif; font-weight: 600; font-size: 16px; color: var(--text); display: block; }
+    .cb-d { font-size: 14px; color: rgba(var(--fg), .55); display: block; margin-top: 2px; }
+    @media (max-width: 560px) { #webinar-form .form-row { grid-template-columns: 1fr !important; } }
+  </style>
+
+  <script>
+    // Zero-backend inschrijving: stelt een mail samen. Vervang dit blok door een
+    // Zoho-formulier / Formspree-endpoint zodra dat klaar is.
+    const wf = document.getElementById('webinar-form');
+    const ws = document.getElementById('webinar-status');
+    if (wf && ws) {
+      wf.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const g = (n) => (new FormData(wf).get(n) || '').toString().trim();
+        const sessies = [];
+        if (wf.sessie1.checked) sessies.push('AI in mensentaal (24/9)');
+        if (wf.sessie2.checked) sessies.push('De 4 fouten (29/10)');
+        if (wf.sessie3.checked) sessies.push('Automatisering in de praktijk (26/11)');
+        if (sessies.length === 0) { ws.textContent = 'Kies minstens één sessie.'; ws.style.color = '#ff8f6b'; return; }
+
+        const subject = `Webinar-inschrijving: ${g('voornaam')} ${g('naam')}`;
+        const body =
+          `Voornaam: ${g('voornaam')}\n` +
+          `Naam: ${g('naam')}\n` +
+          `E-mail: ${g('email')}\n` +
+          `Bedrijf: ${g('bedrijf') || '-'}\n` +
+          `GSM: ${g('gsm') || '-'}\n` +
+          `Postcode: ${g('postcode') || '-'}\n\n` +
+          `Sessies: ${sessies.join(', ')}\n` +
+          `Verse Vlaai nieuwsbrief: ${wf.newsletter.checked ? 'ja' : 'nee'}\n`;
+
+        window.location.href =
+          `mailto:info@bttmline.be?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        ws.textContent = 'Je mailprogramma opent met je inschrijving, druk op verzenden.';
+        ws.style.color = 'var(--accent)';
+      });
+    }
+  </script>
 
 </Base>

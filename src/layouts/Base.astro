@@ -94,17 +94,40 @@ const jsonLd = {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
-  <!-- Zoho PageSense: enkel laden na cookietoestemming -->
+  <!-- Alle derde partijen (analytics, spraakassistent, boekingen) laden pas na cookietoestemming -->
   <script is:inline>
     (function () {
-      function loadAnalytics() {
-        if (window.__psLoaded) return; window.__psLoaded = true;
-        var s = document.createElement('script');
-        s.src = 'https://cdn-eu.pagesense.io/js/20118947447/8c86f22d0a644cd8a469c26a1b952d64.js';
-        document.head.appendChild(s);
+      var loaded = false;
+      function injectWidget() {
+        if (document.getElementById('bttmline-convai')) return;
+        var el = document.createElement('elevenlabs-convai');
+        el.id = 'bttmline-convai';
+        el.setAttribute('agent-id', 'agent_5801kyv9memxfytb1t3wcbasvgdz');
+        document.body.appendChild(el);
+        var w = document.createElement('script');
+        w.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
+        w.async = true;
+        document.body.appendChild(w);
       }
-      window.__bttmlineLoadAnalytics = loadAnalytics;
-      try { if (localStorage.getItem('bttmline-consent') === 'accepted') loadAnalytics(); } catch (e) {}
+      function loadThirdParty() {
+        if (loaded) return; loaded = true;
+        var a = document.createElement('script');
+        a.src = 'https://cdn-eu.pagesense.io/js/20118947447/8c86f22d0a644cd8a469c26a1b952d64.js';
+        document.head.appendChild(a);
+        if (document.body) injectWidget();
+        else document.addEventListener('DOMContentLoaded', injectWidget, { once: true });
+      }
+      function granted() { try { return localStorage.getItem('bttmline-consent') === 'accepted'; } catch (e) { return false; } }
+      window.__bttmlineConsent = {
+        granted: granted,
+        grant: function () {
+          try { localStorage.setItem('bttmline-consent', 'accepted'); } catch (e) {}
+          loadThirdParty();
+          document.dispatchEvent(new CustomEvent('bttmline:consent'));
+        },
+        onGrant: function (cb) { if (granted()) cb(); else document.addEventListener('bttmline:consent', cb, { once: true }); }
+      };
+      if (granted()) loadThirdParty();
     })();
   </script>
 </head>
@@ -211,7 +234,7 @@ const jsonLd = {
 
   <!-- Cookiemelding -->
   <div id="cookie-banner" class="cookie-banner" hidden>
-    <p>We gebruiken cookies om onze site te verbeteren. Analytische cookies laden we pas als je ze aanvaardt. Meer in ons <a href="/privacy">privacybeleid</a>.</p>
+    <p>We gebruiken cookies voor analyse, de spraakassistent en het inplannen van gesprekken. Die laden we pas als je ze aanvaardt. Meer in ons <a href="/privacy">privacybeleid</a>.</p>
     <div class="cookie-actions">
       <button type="button" data-decline>Weigeren</button>
       <button type="button" data-accept>Aanvaarden</button>
@@ -224,18 +247,16 @@ const jsonLd = {
       var choice = null;
       try { choice = localStorage.getItem('bttmline-consent'); } catch (e) {}
       if (!choice) banner.hidden = false;
-      function set(v) {
-        try { localStorage.setItem('bttmline-consent', v); } catch (e) {}
+      banner.querySelector('[data-accept]').addEventListener('click', function () {
+        if (window.__bttmlineConsent) window.__bttmlineConsent.grant();
         banner.hidden = true;
-        if (v === 'accepted' && window.__bttmlineLoadAnalytics) window.__bttmlineLoadAnalytics();
-      }
-      banner.querySelector('[data-accept]').addEventListener('click', function () { set('accepted'); });
-      banner.querySelector('[data-decline]').addEventListener('click', function () { set('declined'); });
+      });
+      banner.querySelector('[data-decline]').addEventListener('click', function () {
+        try { localStorage.setItem('bttmline-consent', 'declined'); } catch (e) {}
+        banner.hidden = true;
+      });
     })();
   </script>
 
-  <!-- ElevenLabs Convai-widget (Alex) -->
-  <elevenlabs-convai agent-id="agent_5801kyv9memxfytb1t3wcbasvgdz"></elevenlabs-convai>
-  <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript" is:inline></script>
 </body>
 </html>
