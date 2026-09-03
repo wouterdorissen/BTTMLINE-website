@@ -196,7 +196,7 @@ export const cases = {
 
   'net-is-net': {
     naam: 'Net = Net',
-    logo: null,
+    logo: '/assets/logos/net-is-net.svg',
     tags: ['AI-agent', 'Integraties', 'WhatsApp Business'],
     result: 'Communicatie die vanzelf kan, gebeurt vanzelf',
     title: 'De communicatie die vanzelf kan, gebeurt vanzelf. De rest krijgt weer tijd.',
