@@ -14,7 +14,7 @@ export const caseOrder = [
 export const cases = {
   'coenegrachts': {
     naam: 'Coenegrachts Substraat',
-    logo: '/assets/logos/coenegrachts.png',
+    logo: '/assets/logos/coenegrachts.svg',
     tags: ['RPA', 'Integraties', 'Nauwelijks AI'],
     result: 'Administratie meer dan gehalveerd',
     title: 'De administratie meer dan gehalveerd, zonder aan compliance te raken',
@@ -59,7 +59,7 @@ export const cases = {
 
   'precitool': {
     naam: 'Precitool',
-    logo: '/assets/logos/precitool.png',
+    logo: '/assets/logos/precitool.svg',
     tags: ['Maatwerk', 'Integraties', 'Geen AI'],
     result: 'Offertes zonder opzoeken of overtypen',
     title: 'Een offerteproces dat niet meer uit opzoeken en overtypen bestaat',
