@@ -31,12 +31,12 @@ Pas in `astro.config.mjs` de regel `site: 'https://www.bttmline.be'` aan naar he
 ## Belangrijkste aandachtspunten (nog af te werken)
 
 ### 1. Formulieren zijn nog niet productieklaar
-Het contactformulier en het open-sollicitatieformulier werken via `mailto`: ze openen de mailapp van de bezoeker met een klaargezette mail die hij zelf nog moet verzenden. Dat werkt niet betrouwbaar (geen ingestelde mailclient = geen mail, geen opslag, geen spam-bescherming, geen bevestiging).
-**Te doen:** vervang dit door een echt formulier-endpoint — bijvoorbeeld een Zoho-formulier, Formspree, Basin of een serverless functie. Zolang dat niet gebeurt, komen leads niet gegarandeerd binnen.
+Het contactformulier, het open-sollicitatieformulier en het webinar-inschrijfformulier werken via `mailto`: ze openen de mailapp van de bezoeker met een klaargezette mail die hij zelf nog moet verzenden. Dat werkt niet betrouwbaar (geen ingestelde mailclient = geen mail, geen opslag, geen spam-bescherming, geen bevestiging).
+**Te doen:** vervang dit door een echt formulier-endpoint — bijvoorbeeld een Zoho-formulier, Formspree, Basin of een serverless functie. Zolang dat niet gebeurt, komen leads en inschrijvingen niet gegarandeerd binnen.
 
-### 2. Cookie-consent is een basis, geen volledige CMP
-De cookiemelding blokkeert de analytics (Zoho PageSense) correct tot de bezoeker toestemming geeft. Maar de **AI-spraakassistent (ElevenLabs)** en het **boekingsvenster (Cal.com)** laden nu nog vóór toestemming.
-**Te doen voor volledige GDPR-conformiteit:** ofwel die twee ook pas laden na toestemming, ofwel een consent-tool zoals **Cookiebot** inschakelen (blokkeert automatisch alle niet-essentiële scripts en houdt consent-logs bij).
+### 2. Cookie-consent
+De cookiemelding blokkeert nu **alle** niet-essentiële derde partijen tot de bezoeker aanvaardt: de analytics (Zoho PageSense), de AI-spraakassistent (ElevenLabs) en het boekingsvenster (Cal.com, dat op de contactpagina pas laadt na een extra klik). Weigert de bezoeker, dan laadt niets daarvan.
+**Optioneel voor strikte conformiteit:** een tool als Cookiebot voegt granulaire categorieën en consent-logging toe. Voor deze schaal is de huidige aanpak een nette, verdedigbare basis.
 
 ### 3. Privacybeleid nog juridisch nakijken
 `/privacy` is een degelijke basis, maar laat ze nakijken en vul het ondernemings-/BTW-nummer aan.
