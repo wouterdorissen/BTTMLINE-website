@@ -279,6 +279,10 @@ html[data-theme="light"] .logo-img-light { display: block; }
 }
 .logo-link:hover .logo-mono { background-color: var(--green); }
 
+/* Klantlogo's op de cases (witte silhouetten): donker maken in licht thema. */
+.case-logo { height: 40px; width: auto; display: block; max-width: 200px; object-fit: contain; }
+html[data-theme="light"] .case-logo { filter: invert(1); }
+
 /* Cursor pulse over buttons/links/logos */
 #cursor-pulse {
   position: fixed; left: 0; top: 0; z-index: 65; pointer-events: none;
