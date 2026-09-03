@@ -123,6 +123,7 @@ const sessies = [
       <p style="font-size:17px; line-height:1.6; color:rgba(var(--fg),.66); margin:0 0 34px">Vul je gegevens in en kies je sessies. Kosteloos, zonder verplichtingen.</p>
 
       <form id="webinar-form" style="border:1px solid rgba(var(--ov),.1); background:var(--panel); padding:34px 32px; display:grid; gap:22px">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0" />
         <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:22px">
           <label style="display:grid; gap:8px"><span class="fl">Voornaam *</span><input class="field" type="text" name="voornaam" required autocomplete="given-name" /></label>
           <label style="display:grid; gap:8px"><span class="fl">Naam *</span><input class="field" type="text" name="naam" required autocomplete="family-name" /></label>
@@ -200,13 +201,15 @@ const sessies = [
   </style>
 
   <script>
-    // Zero-backend inschrijving: stelt een mail samen. Vervang dit blok door een
-    // Zoho-formulier / Formspree-endpoint zodra dat klaar is.
+    // Inschrijving gaat naar een Zapier-webhook (catch hook). Vandaar verwerkt
+    // Zapier de lead verder (mail, CRM, nieuwsbrief, ...).
     const wf = document.getElementById('webinar-form');
     const ws = document.getElementById('webinar-status');
+    const WEBHOOK = 'https://hooks.zapier.com/hooks/catch/3860734/4hfwms1/';
     if (wf && ws) {
-      wf.addEventListener('submit', (e) => {
+      wf.addEventListener('submit', async (e) => {
         e.preventDefault();
+        if (wf.website && wf.website.value) return; // honeypot tegen bots
         const g = (n) => (new FormData(wf).get(n) || '').toString().trim();
         const sessies = [];
         if (wf.sessie1.checked) sessies.push('AI in mensentaal (24/9)');
@@ -214,21 +217,32 @@ const sessies = [
         if (wf.sessie3.checked) sessies.push('Automatisering in de praktijk (26/11)');
         if (sessies.length === 0) { ws.textContent = 'Kies minstens één sessie.'; ws.style.color = '#ff8f6b'; return; }
 
-        const subject = `Webinar-inschrijving: ${g('voornaam')} ${g('naam')}`;
-        const body =
-          `Voornaam: ${g('voornaam')}\n` +
-          `Naam: ${g('naam')}\n` +
-          `E-mail: ${g('email')}\n` +
-          `Bedrijf: ${g('bedrijf') || '-'}\n` +
-          `GSM: ${g('gsm') || '-'}\n` +
-          `Postcode: ${g('postcode') || '-'}\n\n` +
-          `Sessies: ${sessies.join(', ')}\n` +
-          `Verse Vlaai nieuwsbrief: ${wf.newsletter.checked ? 'ja' : 'nee'}\n`;
+        const btn = wf.querySelector('button[type="submit"]');
+        const orig = btn.textContent;
+        btn.disabled = true; btn.textContent = 'Versturen...'; ws.textContent = '';
 
-        window.location.href =
-          `mailto:info@bttmline.be?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        ws.textContent = 'Je mailprogramma opent met je inschrijving, druk op verzenden.';
-        ws.style.color = 'var(--accent)';
+        const p = new URLSearchParams();
+        p.set('voornaam', g('voornaam'));
+        p.set('naam', g('naam'));
+        p.set('email', g('email'));
+        p.set('bedrijf', g('bedrijf'));
+        p.set('gsm', g('gsm'));
+        p.set('postcode', g('postcode'));
+        p.set('sessie_1_mensentaal', wf.sessie1.checked ? 'ja' : 'nee');
+        p.set('sessie_2_fouten', wf.sessie2.checked ? 'ja' : 'nee');
+        p.set('sessie_3_automatisering', wf.sessie3.checked ? 'ja' : 'nee');
+        p.set('sessies', sessies.join(', '));
+        p.set('nieuwsbrief', wf.newsletter.checked ? 'ja' : 'nee');
+        p.set('bron', 'website /inzichten');
+
+        try {
+          await fetch(WEBHOOK, { method: 'POST', mode: 'no-cors', body: p });
+          wf.innerHTML = '<div style="text-align:center; padding:24px 0"><div style="font-family:Geist; font-weight:600; font-size:24px; letter-spacing:-.02em; margin-bottom:10px">Bedankt, je bent ingeschreven!</div><p style="font-size:16px; line-height:1.6; color:rgba(var(--fg),.66); margin:0">Je krijgt de details en de kalenderuitnodiging per mail. Tot dan.</p></div>';
+        } catch (err) {
+          btn.disabled = false; btn.textContent = orig;
+          ws.innerHTML = 'Er ging iets mis. Mail ons gerust op <a href="mailto:info@bttmline.be" style="color:var(--accent)">info@bttmline.be</a>.';
+          ws.style.color = 'rgba(var(--fg),.7)';
+        }
       });
     }
   </script>
