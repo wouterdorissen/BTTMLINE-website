@@ -33,7 +33,7 @@ Pas in `astro.config.mjs` de regel `site: 'https://www.bttmline.be'` aan naar he
 ### 1. Formulieren
 
 **Webinar-inschrijving (/inzichten) — werkt.** Dit formulier stuurt de inschrijving rechtstreeks naar een **Zapier-webhook** (catch hook). Zapier verwerkt de lead daarna verder (bevestigingsmail, Verse Vlaai nieuwsbrief-opt-in, CRM, ...).
-- Webhook-URL staat in `src/pages/inzichten.astro` (constante `WEBHOOK`): `https://hooks.zapier.com/hooks/catch/3860734/4hfwms1/`. Wil je de bestemming wijzigen, pas daar de URL aan (en de Zap in Zapier).
+- De webhook-URL staat **niet in de code**, maar in een omgevingsvariabele `PUBLIC_WEBINAR_WEBHOOK` (zet die in Vercel: Project → Settings → Environment Variables, en lokaal in een `.env`-bestand — zie `.env.example`). De code leest ze via `import.meta.env.PUBLIC_WEBINAR_WEBHOOK`. Zo belandt de URL niet in de git-repo. Wil je de bestemming wijzigen, pas je de variabele aan en herdeploy je.
 - Verstuurde velden: `voornaam`, `naam`, `email`, `bedrijf`, `gsm`, `postcode`, `sessie_1_mensentaal` / `sessie_2_fouten` / `sessie_3_automatisering` (ja/nee), `sessies` (samenvatting), `nieuwsbrief` (ja/nee), `bron`.
 - Er zit een verborgen honeypot-veld (`website`) in tegen botspam. De privacy-akkoordlink wijst naar `/privacy` (BTTMLINE).
 - Let op: de webhook-URL staat in de client-side code (onvermijdelijk bij een statische site). Wie de URL kent, kan er in theorie naar posten. De honeypot vangt simpele bots; voor meer bescherming kan je in Zapier een filter/validatie of captcha toevoegen.
