@@ -52,6 +52,7 @@ De cookiemelding blokkeert nu **alle** niet-essentiële derde partijen tot de be
 - **Cal.com** — het boekingsvenster op /contact wijst naar `cal.com/bttmline`. Dat account moet bestaan en actief blijven.
 - **ElevenLabs** — de spraakassistent (agent-id in `src/layouts/Base.astro`). Wil je die (voorlopig) niet, verwijder dan het `<elevenlabs-convai>`-blok onderaan `Base.astro`.
 - **Zoho PageSense** — analytics-script in `Base.astro`. Vervang of verwijder als je een andere analytics gebruikt.
+- **Meta Pixel** — advertentiemeting (pixel-id `1105578438626369`, in `src/layouts/Base.astro`; laadt pas na cookietoestemming). Er is een bedankpagina **/bedankt** waar het inschrijfformulier na verzenden naartoe stuurt; die vuurt een `Lead`-conversie-event. Stel je Meta-advertentieconversie dus in op het `Lead`-event of op bezoeken van `/bedankt`.
 
 ### 5. GitHub Pages
 Als de repo op GitHub staat, kan GitHub Pages een (falende) build proberen. Er staat een `.nojekyll` in de repo om dat te neutraliseren. Zet GitHub Pages anders gewoon uit; de site draait via de gekozen host, niet via Pages.

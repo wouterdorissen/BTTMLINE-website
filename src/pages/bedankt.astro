@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="Bedankt — BTTMLINE"
+  description="Bedankt voor je inschrijving. Je krijgt de details en de kalenderuitnodiging per mail."
+>
+
+  <section class="sec sec-hero" style="max-width:900px; margin:0 auto; padding:150px 32px 130px; text-align:center; min-height:calc(100svh - 420px); display:flex; flex-direction:column; justify-content:center">
+    <div style="font-family:'Geist',sans-serif; font-size:14px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:24px">Ingeschreven</div>
+    <h1 style="font-family:Geist; font-weight:600; font-size:clamp(34px,4.4vw,64px); line-height:1.03; letter-spacing:-.04em; margin:0; text-wrap:balance">Bedankt, je bent ingeschreven!</h1>
+    <p style="font-size:19px; line-height:1.6; color:rgba(var(--fg),.68); margin:28px auto 0; max-width:52ch; text-wrap:pretty">Je krijgt de details en de kalenderuitnodiging per mail. Tot dan!</p>
+    <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:36px">
+      <a class="btn-cta" href="/" style="background:#007861; color:#FFFFFF; font-family:'Geist',sans-serif; padding:16px 26px; border:1px solid #00A583">Terug naar home</a>
+      <a class="btn-ghost" href="/cases" style="color:var(--text); font-family:'Geist',sans-serif; padding:16px 26px; border:1px solid rgba(var(--ov),.16)">Bekijk onze cases</a>
+    </div>
+  </section>
+
+  <script is:inline>
+    // Conversie-event voor advertenties (vuurt enkel als de bezoeker cookies aanvaardde).
+    (function () {
+      function fireLead() { if (window.fbq) window.fbq('track', 'Lead'); }
+      if (window.__bttmlineConsent) window.__bttmlineConsent.onGrant(fireLead);
+      else if (window.fbq) fireLead();
+    })();
+  </script>
+
+</Base>
