@@ -8,27 +8,6 @@ const posts = (await getCollection('inzichten', ({ data }) => !data.draft)).sort
 
 const sessies = [
   {
-    nr: 'Sessie 1',
-    datum: 'Donderdag 24 september 2026',
-    tijd: '10:30 – 11:30',
-    titel: 'AI in mensentaal',
-    kort: 'De perfecte startsessie, met live demo. Leer wat AI is, hoe het werkt en wat je ermee kan.',
-    volledig: 'AI in mensentaal: wat is het, hoe werkt het en wat kan je ermee?',
-    intro:
-      'Iedereen praat over AI. Je hoort er dagelijks van alles over in het nieuws, maar wat is het eigenlijk? Hoe werkt artificiële intelligentie? En hoe kan je het gebruiken om je werk en leven te ondersteunen? In dit eerste webinar geven Ben en Wouter je een nuchter, helder beeld, in mensentaal.',
-    leren: [
-      'Wat is AI en wat is het niet',
-      'Het verschil tussen AI en genAI',
-      'Wat is de beste AI, welke moet je gebruiken',
-      'Hoe een taalmodel eigenlijk werkt',
-      'Waarom AI-modellen “hallucineren”',
-      'Waar AI goed in is, en waarin niet',
-      'Live demo: AI correct gebruiken (prompten)',
-      'Tools en tips om zelf mee aan de slag te gaan',
-      'Q&A',
-    ],
-  },
-  {
     nr: 'Sessie 2',
     datum: 'Donderdag 29 oktober 2026',
     tijd: '10:30 – 11:30',
@@ -66,6 +45,28 @@ const sessies = [
       'Q&A',
     ],
   },
+  {
+    nr: 'Sessie 1',
+    gepasseerd: true,
+    datum: 'Donderdag 24 september 2026',
+    tijd: '10:30 – 11:30',
+    titel: 'AI in mensentaal',
+    kort: 'De startsessie is voorbij, maar de replay is beschikbaar. Leer wat AI is, hoe het werkt en wat je ermee kan, met live demo.',
+    volledig: 'AI in mensentaal: wat is het, hoe werkt het en wat kan je ermee?',
+    intro:
+      'Iedereen praat over AI. Je hoort er dagelijks van alles over in het nieuws, maar wat is het eigenlijk? Hoe werkt artificiële intelligentie? En hoe kan je het gebruiken om je werk en leven te ondersteunen? In dit eerste webinar geven Ben en Wouter je een nuchter, helder beeld, in mensentaal. Deze sessie is gepasseerd, maar je kan de replay ontvangen.',
+    leren: [
+      'Wat is AI en wat is het niet',
+      'Het verschil tussen AI en genAI',
+      'Wat is de beste AI, welke moet je gebruiken',
+      'Hoe een taalmodel eigenlijk werkt',
+      'Waarom AI-modellen “hallucineren”',
+      'Waar AI goed in is, en waarin niet',
+      'Live demo: AI correct gebruiken (prompten)',
+      'Tools en tips om zelf mee aan de slag te gaan',
+      'Q&A',
+    ],
+  },
 ];
 ---
 <Base
@@ -89,8 +90,17 @@ const sessies = [
         <div style="border:1px solid rgba(var(--ov),.1); background:var(--panel); padding:34px 34px">
           <div style="display:flex; flex-wrap:wrap; align-items:center; gap:16px; margin-bottom:18px">
             <span style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); border:1px solid rgba(43,216,168,.35); padding:5px 10px">{s.nr}</span>
-            <span style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.6)">{s.datum}</span>
-            <span style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.6)">{s.tijd}</span>
+            {s.gepasseerd ? (
+              <Fragment>
+                <span style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.45); text-decoration:line-through">{s.datum}</span>
+                <span style="font-family:'Geist',sans-serif; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); background:rgba(0,120,97,.16); padding:5px 10px">Gepasseerd · replay beschikbaar</span>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <span style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.6)">{s.datum}</span>
+                <span style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.6)">{s.tijd}</span>
+              </Fragment>
+            )}
           </div>
           <h2 style="font-family:Geist; font-weight:600; font-size:clamp(24px,2.8vw,34px); line-height:1.1; letter-spacing:-.03em; margin:0 0 12px">{s.titel}</h2>
           <p style="font-size:17px; line-height:1.6; color:rgba(var(--fg),.68); margin:0; max-width:64ch">{s.kort}</p>
@@ -110,7 +120,7 @@ const sessies = [
             </div>
           </details>
 
-          <a href="#inschrijven" style="display:inline-block; margin-top:22px; font-family:'Geist',sans-serif; font-size:14px; color:var(--accent)">Schrijf je in →</a>
+          <a href="#inschrijven" style="display:inline-block; margin-top:22px; font-family:'Geist',sans-serif; font-size:14px; color:var(--accent)">{s.gepasseerd ? 'Ontvang de replay →' : 'Schrijf je in →'}</a>
         </div>
       ))}
     </div>
@@ -140,9 +150,9 @@ const sessies = [
 
         <div style="border-top:1px solid rgba(var(--ov),.1); padding-top:22px; display:grid; gap:14px">
           <div class="fl" style="margin-bottom:2px">Ik schrijf me in voor</div>
-          <label class="cb"><input type="checkbox" name="sessie1" checked /><span><span class="cb-t">AI in mensentaal</span><span class="cb-d">Donderdag 24 september, 10:30 – 11:30</span></span></label>
           <label class="cb"><input type="checkbox" name="sessie2" checked /><span><span class="cb-t">De 4 meest gemaakte fouten in AI-projecten</span><span class="cb-d">Donderdag 29 oktober, 10:30 – 11:30</span></span></label>
           <label class="cb"><input type="checkbox" name="sessie3" checked /><span><span class="cb-t">AI-automatisering in de praktijk: drie cases</span><span class="cb-d">Donderdag 26 november, 10:30 – 11:30</span></span></label>
+          <label class="cb"><input type="checkbox" name="sessie1" checked /><span><span class="cb-t">AI in mensentaal — replay</span><span class="cb-d">Gepasseerd op 24 september, je ontvangt de opname</span></span></label>
         </div>
 
         <label class="cb" style="border-top:1px solid rgba(var(--ov),.1); padding-top:22px"><input type="checkbox" name="newsletter" checked /><span class="cb-t" style="font-weight:400; color:rgba(var(--fg),.72)">Schrijf me in voor Verse Vlaai, de kosteloze wekelijkse AI-nieuwsbrief voor Vlaamse ondernemers en professionals, geschreven door Wouter Dorissen.</span></label>
@@ -216,9 +226,9 @@ const sessies = [
         if (!WEBHOOK) { ws.textContent = 'Het inschrijfformulier is nog niet geconfigureerd. Mail ons gerust op info@bttmline.be.'; ws.style.color = 'rgba(var(--fg),.7)'; return; }
         const g = (n) => (new FormData(wf).get(n) || '').toString().trim();
         const sessies = [];
-        if (wf.sessie1.checked) sessies.push('AI in mensentaal (24/9)');
         if (wf.sessie2.checked) sessies.push('De 4 fouten (29/10)');
         if (wf.sessie3.checked) sessies.push('Automatisering in de praktijk (26/11)');
+        if (wf.sessie1.checked) sessies.push('AI in mensentaal — replay (24/9)');
         if (sessies.length === 0) { ws.textContent = 'Kies minstens één sessie.'; ws.style.color = '#ff8f6b'; return; }
 
         const btn = wf.querySelector('button[type="submit"]');
