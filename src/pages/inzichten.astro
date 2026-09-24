@@ -208,11 +208,12 @@ const sessies = [
     // Zapier de lead verder (mail, CRM, nieuwsbrief, ...).
     const wf = document.getElementById('webinar-form');
     const ws = document.getElementById('webinar-status');
-    const WEBHOOK = 'https://hooks.zapier.com/hooks/catch/3860734/4hfwms1/';
+    const WEBHOOK = import.meta.env.PUBLIC_WEBINAR_WEBHOOK;
     if (wf && ws) {
       wf.addEventListener('submit', async (e) => {
         e.preventDefault();
         if (wf.website && wf.website.value) return; // honeypot tegen bots
+        if (!WEBHOOK) { ws.textContent = 'Het inschrijfformulier is nog niet geconfigureerd. Mail ons gerust op info@bttmline.be.'; ws.style.color = 'rgba(var(--fg),.7)'; return; }
         const g = (n) => (new FormData(wf).get(n) || '').toString().trim();
         const sessies = [];
         if (wf.sessie1.checked) sessies.push('AI in mensentaal (24/9)');
@@ -241,9 +242,7 @@ const sessies = [
 
         try {
           await fetch(WEBHOOK, { method: 'POST', mode: 'no-cors', body: p });
-          wf.innerHTML = '<div style="text-align:center; padding:24px 0"><div style="font-family:Geist; font-weight:600; font-size:24px; letter-spacing:-.02em; margin-bottom:10px">Bedankt, je bent ingeschreven!</div><p style="font-size:16px; line-height:1.6; color:rgba(var(--fg),.66); margin:0">Je krijgt de details en de kalenderuitnodiging per mail. Tot dan.</p></div>';
-          const sec = document.getElementById('inschrijven');
-          if (sec) { const y = sec.getBoundingClientRect().top + window.scrollY - 80; window.scrollTo({ top: y, behavior: 'smooth' }); }
+          window.location.href = '/bedankt';
         } catch (err) {
           btn.disabled = false; btn.textContent = orig;
           ws.innerHTML = 'Er ging iets mis. Mail ons gerust op <a href="mailto:info@bttmline.be" style="color:var(--accent)">info@bttmline.be</a>.';

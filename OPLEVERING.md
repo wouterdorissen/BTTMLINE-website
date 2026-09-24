@@ -33,7 +33,7 @@ Pas in `astro.config.mjs` de regel `site: 'https://www.bttmline.be'` aan naar he
 ### 1. Formulieren
 
 **Webinar-inschrijving (/inzichten) — werkt.** Dit formulier stuurt de inschrijving rechtstreeks naar een **Zapier-webhook** (catch hook). Zapier verwerkt de lead daarna verder (bevestigingsmail, Verse Vlaai nieuwsbrief-opt-in, CRM, ...).
-- Webhook-URL staat in `src/pages/inzichten.astro` (constante `WEBHOOK`): `https://hooks.zapier.com/hooks/catch/3860734/4hfwms1/`. Wil je de bestemming wijzigen, pas daar de URL aan (en de Zap in Zapier).
+- De webhook-URL staat **niet in de code**, maar in een omgevingsvariabele `PUBLIC_WEBINAR_WEBHOOK` (zet die in Vercel: Project → Settings → Environment Variables, en lokaal in een `.env`-bestand — zie `.env.example`). De code leest ze via `import.meta.env.PUBLIC_WEBINAR_WEBHOOK`. Zo belandt de URL niet in de git-repo. Wil je de bestemming wijzigen, pas je de variabele aan en herdeploy je.
 - Verstuurde velden: `voornaam`, `naam`, `email`, `bedrijf`, `gsm`, `postcode`, `sessie_1_mensentaal` / `sessie_2_fouten` / `sessie_3_automatisering` (ja/nee), `sessies` (samenvatting), `nieuwsbrief` (ja/nee), `bron`.
 - Er zit een verborgen honeypot-veld (`website`) in tegen botspam. De privacy-akkoordlink wijst naar `/privacy` (BTTMLINE).
 - Let op: de webhook-URL staat in de client-side code (onvermijdelijk bij een statische site). Wie de URL kent, kan er in theorie naar posten. De honeypot vangt simpele bots; voor meer bescherming kan je in Zapier een filter/validatie of captcha toevoegen.
@@ -52,6 +52,7 @@ De cookiemelding blokkeert nu **alle** niet-essentiële derde partijen tot de be
 - **Cal.com** — het boekingsvenster op /contact wijst naar `cal.com/bttmline`. Dat account moet bestaan en actief blijven.
 - **ElevenLabs** — de spraakassistent (agent-id in `src/layouts/Base.astro`). Wil je die (voorlopig) niet, verwijder dan het `<elevenlabs-convai>`-blok onderaan `Base.astro`.
 - **Zoho PageSense** — analytics-script in `Base.astro`. Vervang of verwijder als je een andere analytics gebruikt.
+- **Meta Pixel** — advertentiemeting (pixel-id `1105578438626369`, in `src/layouts/Base.astro`; laadt pas na cookietoestemming). Er is een bedankpagina **/bedankt** waar het inschrijfformulier na verzenden naartoe stuurt; die vuurt een `Lead`-conversie-event. Stel je Meta-advertentieconversie dus in op het `Lead`-event of op bezoeken van `/bedankt`.
 
 ### 5. GitHub Pages
 Als de repo op GitHub staat, kan GitHub Pages een (falende) build proberen. Er staat een `.nojekyll` in de repo om dat te neutraliseren. Zet GitHub Pages anders gewoon uit; de site draait via de gekozen host, niet via Pages.
