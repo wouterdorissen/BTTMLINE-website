@@ -8,25 +8,6 @@ const posts = (await getCollection('inzichten', ({ data }) => !data.draft)).sort
 
 const sessies = [
   {
-    nr: 'Sessie 2',
-    datum: 'Donderdag 29 oktober 2026',
-    tijd: '10:30 – 11:30',
-    titel: 'De 4 meest gemaakte fouten in AI-projecten',
-    kort: 'De meeste AI-projecten mislukken. Niet door de technologie, maar door de aanpak. Leer de vier klassieke fouten vermijden.',
-    volledig: 'De 4 meest gemaakte fouten in AI-projecten (en hoe het wél moet)',
-    intro:
-      'De meeste AI-projecten mislukken niet door de technologie, maar door de aanpak. Bedrijven kopen licenties voor iedereen en gaan pas daarna zoeken waarvoor ze dienen. In dit tweede webinar overlopen Ben en Wouter de vier fouten die telkens opnieuw opduiken bij de start van een AI-project, en tonen ze hoe je het wél moet aanpakken.',
-    leren: [
-      'De vier meest gemaakte fouten',
-      'Waarom je begint bij je proces',
-      'Hoe je je processen en frustraties in kaart brengt',
-      'Waar de bottlenecks zitten, en waar de echte winst zit',
-      'Hoe je beslist of je oplossing een AI-oplossing moet zijn of niet',
-      'Hoe je er zelf aan begint, met onze handige template',
-      'Q&A',
-    ],
-  },
-  {
     nr: 'Sessie 3',
     datum: 'Donderdag 26 november 2026',
     tijd: '10:30 – 11:30',
@@ -64,6 +45,26 @@ const sessies = [
       'Waar AI goed in is, en waarin niet',
       'Live demo: AI correct gebruiken (prompten)',
       'Tools en tips om zelf mee aan de slag te gaan',
+      'Q&A',
+    ],
+  },
+  {
+    nr: 'Sessie 2',
+    gepasseerd: true,
+    datum: 'Donderdag 29 oktober 2026',
+    tijd: '10:30 – 11:30',
+    titel: 'De 4 meest gemaakte fouten in AI-projecten',
+    kort: 'Deze sessie is voorbij, maar de replay is beschikbaar. Leer de vier klassieke fouten in AI-projecten vermijden.',
+    volledig: 'De 4 meest gemaakte fouten in AI-projecten (en hoe het wél moet)',
+    intro:
+      'De meeste AI-projecten mislukken niet door de technologie, maar door de aanpak. Bedrijven kopen licenties voor iedereen en gaan pas daarna zoeken waarvoor ze dienen. In dit tweede webinar overlopen Ben en Wouter de vier fouten die telkens opnieuw opduiken bij de start van een AI-project, en tonen ze hoe je het wél moet aanpakken. Deze sessie is gepasseerd, maar je kan de replay ontvangen.',
+    leren: [
+      'De vier meest gemaakte fouten',
+      'Waarom je begint bij je proces',
+      'Hoe je je processen en frustraties in kaart brengt',
+      'Waar de bottlenecks zitten, en waar de echte winst zit',
+      'Hoe je beslist of je oplossing een AI-oplossing moet zijn of niet',
+      'Hoe je er zelf aan begint, met onze handige template',
       'Q&A',
     ],
   },
@@ -150,9 +151,9 @@ const sessies = [
 
         <div style="border-top:1px solid rgba(var(--ov),.1); padding-top:22px; display:grid; gap:14px">
           <div class="fl" style="margin-bottom:2px">Ik schrijf me in voor</div>
-          <label class="cb"><input type="checkbox" name="sessie2" checked /><span><span class="cb-t">De 4 meest gemaakte fouten in AI-projecten</span><span class="cb-d">Donderdag 29 oktober, 10:30 – 11:30</span></span></label>
           <label class="cb"><input type="checkbox" name="sessie3" checked /><span><span class="cb-t">AI-automatisering in de praktijk: drie cases</span><span class="cb-d">Donderdag 26 november, 10:30 – 11:30</span></span></label>
           <label class="cb"><input type="checkbox" name="sessie1" checked /><span><span class="cb-t">AI in mensentaal — replay</span><span class="cb-d">Gepasseerd op 24 september, je ontvangt de opname</span></span></label>
+          <label class="cb"><input type="checkbox" name="sessie2" checked /><span><span class="cb-t">De 4 meest gemaakte fouten — replay</span><span class="cb-d">Gepasseerd op 29 oktober, je ontvangt de opname</span></span></label>
         </div>
 
         <label class="cb" style="border-top:1px solid rgba(var(--ov),.1); padding-top:22px"><input type="checkbox" name="newsletter" checked /><span class="cb-t" style="font-weight:400; color:rgba(var(--fg),.72)">Schrijf me in voor Verse Vlaai, de kosteloze wekelijkse AI-nieuwsbrief voor Vlaamse ondernemers en professionals, geschreven door Wouter Dorissen.</span></label>
@@ -226,9 +227,9 @@ const sessies = [
         if (!WEBHOOK) { ws.textContent = 'Het inschrijfformulier is nog niet geconfigureerd. Mail ons gerust op info@bttmline.be.'; ws.style.color = 'rgba(var(--fg),.7)'; return; }
         const g = (n) => (new FormData(wf).get(n) || '').toString().trim();
         const sessies = [];
-        if (wf.sessie2.checked) sessies.push('De 4 fouten (29/10)');
         if (wf.sessie3.checked) sessies.push('Automatisering in de praktijk (26/11)');
         if (wf.sessie1.checked) sessies.push('AI in mensentaal — replay (24/9)');
+        if (wf.sessie2.checked) sessies.push('De 4 fouten — replay (29/10)');
         if (sessies.length === 0) { ws.textContent = 'Kies minstens één sessie.'; ws.style.color = '#ff8f6b'; return; }
 
         const btn = wf.querySelector('button[type="submit"]');
