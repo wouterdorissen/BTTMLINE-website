@@ -22,57 +22,50 @@ const budgetTiers = [
   description="Een downloadbare tool om zelf aan de slag te gaan met je eigen AI-project: van probleem en gewenst resultaat, over procesmapping, tot een eerste pilot."
 >
 
-  <section class="sec sec-hero" style="max-width:1000px; margin:0 auto; padding:110px 32px 50px">
-    <div style="font-family:'Geist',sans-serif; font-size:14px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:24px">Gratis tool</div>
-    <h1 style="font-family:Geist; font-weight:600; font-size:clamp(34px,4.4vw,64px); line-height:1.03; letter-spacing:-.04em; margin:0; max-width:20ch; text-wrap:balance">Start je AI-project.</h1>
-    <p style="font-size:19px; line-height:1.6; color:rgba(var(--fg),.68); margin:30px 0 0; max-width:62ch; text-wrap:pretty">Een downloadbare tool om zelf aan de slag te gaan met je eigen AI-project. Ze neemt je stap voor stap mee:</p>
-    <div style="display:grid; gap:14px; margin-top:28px; max-width:70ch">
-      {steps.map((s, i) => (
-        <div style="display:grid; grid-template-columns:34px 1fr; gap:14px; align-items:start">
-          <span style="font-family:Geist; font-weight:600; font-size:15px; color:var(--accent); border:1px solid rgba(43,216,168,.35); width:30px; height:30px; display:flex; align-items:center; justify-content:center; border-radius:50%">{i + 1}</span>
-          <span style="font-size:17px; line-height:1.55; color:rgba(var(--fg),.78); padding-top:3px">{s}</span>
+  <section class="sec sec-hero" style="max-width:1280px; margin:0 auto; padding:120px 32px 100px">
+    <div class="stack-2" style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:60px; align-items:start">
+
+      <div>
+        <div style="font-family:'Geist',sans-serif; font-size:14px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:24px">Gratis tool</div>
+        <h1 style="font-family:Geist; font-weight:600; font-size:clamp(34px,4.4vw,60px); line-height:1.03; letter-spacing:-.04em; margin:0; max-width:16ch; text-wrap:balance">Start je AI-project.</h1>
+        <p style="font-size:18px; line-height:1.6; color:rgba(var(--fg),.68); margin:28px 0 0; max-width:50ch; text-wrap:pretty">Een downloadbare tool om zelf aan de slag te gaan met je eigen AI-project. Ze neemt je stap voor stap mee:</p>
+        <div style="display:grid; gap:14px; margin-top:26px; max-width:52ch">
+          {steps.map((s, i) => (
+            <div style="display:grid; grid-template-columns:32px 1fr; gap:14px; align-items:start">
+              <span style="font-family:Geist; font-weight:600; font-size:15px; color:var(--accent); border:1px solid rgba(43,216,168,.35); width:30px; height:30px; display:flex; align-items:center; justify-content:center; border-radius:50%">{i + 1}</span>
+              <span style="font-size:16px; line-height:1.55; color:rgba(var(--fg),.78); padding-top:4px">{s}</span>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-    <div style="margin-top:36px">
-      <a class="btn-cta" href="#download" style="display:inline-block; background:#007861; color:#FFFFFF; font-family:'Geist',sans-serif; padding:16px 26px; border:1px solid #00A583">Download de tool</a>
-    </div>
-  </section>
+      </div>
 
-  <section id="download" style="border-top:1px solid rgba(var(--ov),.07)">
-    <div class="sec" style="max-width:720px; margin:0 auto; padding:80px 32px 90px">
-      <div style="font-family:'Geist',sans-serif; font-size:14px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:18px">Download</div>
-      <h2 style="font-family:Geist; font-weight:600; font-size:clamp(28px,3.4vw,44px); letter-spacing:-.035em; margin:0 0 12px">Krijg de tool</h2>
-      <p style="font-size:17px; line-height:1.6; color:rgba(var(--fg),.66); margin:0 0 34px">Vul je gegevens in, en de tool opent meteen.</p>
-
-      <form id="startai-form" style="border:1px solid rgba(var(--ov),.1); background:var(--panel); padding:34px 32px; display:grid; gap:22px">
+      <form id="startai-form" style="border:1px solid rgba(var(--ov),.1); background:var(--panel); padding:32px 30px; display:grid; gap:20px">
         <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0" />
 
-        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:22px">
+        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:20px">
           <label style="display:grid; gap:8px"><span class="fl">Voornaam *</span><input class="field" type="text" name="voornaam" required autocomplete="given-name" /></label>
           <label style="display:grid; gap:8px"><span class="fl">Achternaam *</span><input class="field" type="text" name="achternaam" required autocomplete="family-name" /></label>
         </div>
-        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:22px">
-          <label style="display:grid; gap:8px"><span class="fl">Bedrijfsnaam *</span><input class="field" type="text" name="bedrijf" required autocomplete="organization" /></label>
-          <label style="display:grid; gap:8px"><span class="fl">Functie *</span><input class="field" type="text" name="functie" required autocomplete="organization-title" /></label>
-        </div>
+        <label style="display:grid; gap:8px"><span class="fl">Bedrijfsnaam *</span><input class="field" type="text" name="bedrijf" required autocomplete="organization" /></label>
+        <label style="display:grid; gap:8px"><span class="fl">Functie *</span><input class="field" type="text" name="functie" required autocomplete="organization-title" /></label>
 
         <div style="display:grid; gap:8px">
           <span class="fl">Wat is je automatiseringsbudget? *</span>
-          <span style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.5); margin:-2px 0 4px; text-transform:none; letter-spacing:0">Zijn jullie bereid om te investeren om processen in jouw onderneming te automatiseren?</span>
+          <span style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.5); margin:-2px 0 4px; line-height:1.45">Zijn jullie bereid om te investeren om processen in jouw onderneming te automatiseren?</span>
           <select class="field" name="budget" required>
             <option value="" disabled selected>Kies een optie…</option>
             {budgetTiers.map((t) => <option value={t}>{t}</option>)}
           </select>
         </div>
 
-        <label class="cb"><input type="checkbox" name="privacy" required /><span class="cb-t" style="font-weight:400; font-size:14px; color:rgba(var(--fg),.55)">Ik ga akkoord met de privacyverklaring van <a href="/privacy" style="color:var(--accent)">BTTMLINE</a>. *</span></label>
+        <label class="cb"><input type="checkbox" name="privacy" required /><span style="font-family:Geist,sans-serif; font-size:14px; color:rgba(var(--fg),.55)">Ik ga akkoord met de privacyverklaring van <a href="/privacy" style="color:var(--accent)">BTTMLINE</a>. *</span></label>
 
-        <div style="display:flex; flex-wrap:wrap; align-items:center; gap:18px">
+        <div style="display:flex; flex-wrap:wrap; align-items:center; gap:16px; margin-top:4px">
           <button type="submit" class="btn-cta" style="background:#007861; color:#FFFFFF; font-family:'Geist',sans-serif; padding:15px 26px; border:1px solid #00A583; cursor:pointer">Download de tool →</button>
           <span id="startai-status" role="status" aria-live="polite" style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.5)"></span>
         </div>
       </form>
+
     </div>
   </section>
 
@@ -91,7 +84,6 @@ const budgetTiers = [
     }
     .cb { display: grid; grid-template-columns: 20px 1fr; gap: 12px; align-items: start; cursor: pointer; }
     .cb input { margin-top: 3px; width: 16px; height: 16px; accent-color: #007861; }
-    .cb-t { font-family: Geist, sans-serif; display: block; }
     @media (max-width: 560px) { #startai-form .form-row { grid-template-columns: 1fr !important; } }
   </style>
 
@@ -121,12 +113,10 @@ const budgetTiers = [
         try {
           await fetch(WEBHOOK, { method: 'POST', mode: 'no-cors', body: p });
           if (window.fbq) window.fbq('track', 'Lead');
-          // Eerst bedankt, dan opent de tool.
-          const card = sf;
-          card.innerHTML =
+          sf.innerHTML =
             '<div style="text-align:center; padding:20px 0">' +
             '<div style="font-family:Geist; font-weight:600; font-size:24px; letter-spacing:-.02em; margin-bottom:10px">Bedankt! Je tool opent nu.</div>' +
-            '<p style="font-size:16px; line-height:1.6; color:rgba(var(--fg),.66); margin:0 0 24px">Opent ze niet automatisch? Klik hieronder om de tool te openen.</p>' +
+            '<p style="font-size:16px; line-height:1.6; color:rgba(var(--fg),.66); margin:0 0 24px">Opent ze niet automatisch? Klik hieronder.</p>' +
             '<a href="' + TOOL + '" target="_blank" rel="noopener" class="btn-cta" style="display:inline-block; background:#007861; color:#FFFFFF; font-family:Geist,sans-serif; padding:15px 26px; border:1px solid #00A583">Open de AI-projecttool →</a>' +
             '</div>';
           try { window.open(TOOL, '_blank'); } catch (err) {}
