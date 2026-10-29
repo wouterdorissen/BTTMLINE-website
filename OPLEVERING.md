@@ -38,6 +38,8 @@ Pas in `astro.config.mjs` de regel `site: 'https://www.bttmline.be'` aan naar he
 - Er zit een verborgen honeypot-veld (`website`) in tegen botspam. De privacy-akkoordlink wijst naar `/privacy` (BTTMLINE).
 - Let op: de webhook-URL staat in de client-side code (onvermijdelijk bij een statische site). Wie de URL kent, kan er in theorie naar posten. De honeypot vangt simpele bots; voor meer bescherming kan je in Zapier een filter/validatie of captcha toevoegen.
 
+**Start je AI-project (/start-ai-project) — werkt.** Een tweede webhook-formulier (met budget-kwalificatie) dat naar een eigen Zapier-webhook stuurt via de env-var `PUBLIC_STARTAI_WEBHOOK`. Na verzenden opent de gehoste tool-PDF (`public/BTTMLINE-Verse-Vlaai-AI-Project.pdf`) en vuurt een `Lead`-event. Zet `PUBLIC_STARTAI_WEBHOOK` dus ook in Vercel.
+
 **Contact- en sollicitatieformulier — nog `mailto`.** Deze twee openen de mailapp van de bezoeker met een klaargezette mail die hij zelf nog moet verzenden. Dat is niet betrouwbaar (geen ingestelde mailclient = geen mail, geen opslag, geen bevestiging).
 **Te doen:** zet ze op dezelfde manier op een webhook (Zapier) of een echt endpoint (Zoho/Formspree/serverless).
 
