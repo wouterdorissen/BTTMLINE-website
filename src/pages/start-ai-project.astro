@@ -46,6 +46,10 @@ const budgetTiers = [
           <label style="display:grid; gap:8px"><span class="fl">Voornaam *</span><input class="field" type="text" name="voornaam" required autocomplete="given-name" /></label>
           <label style="display:grid; gap:8px"><span class="fl">Achternaam *</span><input class="field" type="text" name="achternaam" required autocomplete="family-name" /></label>
         </div>
+        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:20px">
+          <label style="display:grid; gap:8px"><span class="fl">E-mailadres *</span><input class="field" type="email" name="email" required autocomplete="email" /></label>
+          <label style="display:grid; gap:8px"><span class="fl">GSM *</span><input class="field" type="tel" name="gsm" required autocomplete="tel" /></label>
+        </div>
         <label style="display:grid; gap:8px"><span class="fl">Bedrijfsnaam *</span><input class="field" type="text" name="bedrijf" required autocomplete="organization" /></label>
         <label style="display:grid; gap:8px"><span class="fl">Functie *</span><input class="field" type="text" name="functie" required autocomplete="organization-title" /></label>
 
@@ -105,6 +109,8 @@ const budgetTiers = [
         const p = new URLSearchParams();
         p.set('voornaam', g('voornaam'));
         p.set('achternaam', g('achternaam'));
+        p.set('email', g('email'));
+        p.set('gsm', g('gsm'));
         p.set('bedrijf', g('bedrijf'));
         p.set('functie', g('functie'));
         p.set('budget', g('budget'));
