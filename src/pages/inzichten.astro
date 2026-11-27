@@ -9,6 +9,7 @@ const posts = (await getCollection('inzichten', ({ data }) => !data.draft)).sort
 const sessies = [
   {
     nr: 'Sessie 3',
+    gepasseerd: true,
     datum: 'Donderdag 26 november 2026',
     tijd: '10:30 – 11:30',
     titel: 'AI-automatisering in de praktijk: drie cases',
@@ -79,9 +80,9 @@ const sessies = [
   <section class="sec sec-hero" style="max-width:1280px; margin:0 auto; padding:110px 32px 50px">
     <div style="font-family:'Geist',sans-serif; font-size:14px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:24px">Webinarreeks · Verse Vlaai × BTTMLINE</div>
     <h1 style="font-family:Geist; font-weight:600; font-size:clamp(34px,4.4vw,64px); line-height:1.03; letter-spacing:-.04em; margin:0; max-width:20ch; text-wrap:balance">Drie kosteloze AI-webinars, van basis tot gevorderd.</h1>
-    <p style="font-size:18px; line-height:1.65; color:rgba(var(--fg),.68); margin:32px 0 0; max-width:60ch; text-wrap:pretty">Drie donderdagen, drie uur kennis, nul euro. Samen met Ben Jorissen van BTTMLINE en Wouter Dorissen van Verse Vlaai. Drie sessies die op elkaar voortbouwen: start met de basis, leer de klassieke fouten vermijden, en ontdek hoe echte automatiseringen eruitzien in de praktijk.</p>
+    <p style="font-size:18px; line-height:1.65; color:rgba(var(--fg),.68); margin:32px 0 0; max-width:60ch; text-wrap:pretty">Alle drie de webinars zijn voorbij. Bekijk de gratis replays op je eigen tempo. Samen met Ben Jorissen van BTTMLINE en Wouter Dorissen van Verse Vlaai. Drie sessies die op elkaar voortbouwen: start met de basis, leer de klassieke fouten vermijden, en ontdek hoe echte automatiseringen eruitzien in de praktijk.</p>
     <div style="display:flex; flex-wrap:wrap; gap:14px; margin-top:32px">
-      <a class="btn-cta" href="#inschrijven" style="background:#007861; color:#FFFFFF; font-family:'Geist',sans-serif; padding:16px 26px; border:1px solid #00A583">Schrijf je in</a>
+      <a class="btn-cta" href="#inschrijven" style="background:#007861; color:#FFFFFF; font-family:'Geist',sans-serif; padding:16px 26px; border:1px solid #00A583">Vraag de replays aan</a>
     </div>
   </section>
 
@@ -129,9 +130,9 @@ const sessies = [
 
   <section id="inschrijven" style="border-top:1px solid rgba(var(--ov),.07)">
     <div class="sec" style="max-width:760px; margin:0 auto; padding:80px 32px 40px">
-      <div style="font-family:'Geist',sans-serif; font-size:14px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:18px">Inschrijven</div>
-      <h2 style="font-family:Geist; font-weight:600; font-size:clamp(28px,3.4vw,44px); letter-spacing:-.035em; margin:0 0 12px">Schrijf je in</h2>
-      <p style="font-size:17px; line-height:1.6; color:rgba(var(--fg),.66); margin:0 0 34px">Vul je gegevens in en kies je sessies. Kosteloos, zonder verplichtingen.</p>
+      <div style="font-family:'Geist',sans-serif; font-size:14px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:18px">Replays</div>
+      <h2 style="font-family:Geist; font-weight:600; font-size:clamp(28px,3.4vw,44px); letter-spacing:-.035em; margin:0 0 12px">Vraag de replays aan</h2>
+      <p style="font-size:17px; line-height:1.6; color:rgba(var(--fg),.66); margin:0 0 34px">Kies je opnames en vul je gegevens in. Je ontvangt de gratis kijklinks per mail.</p>
 
       <form id="webinar-form" style="border:1px solid rgba(var(--ov),.1); background:var(--panel); padding:34px 32px; display:grid; gap:22px">
         <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0" />
@@ -150,8 +151,8 @@ const sessies = [
         </div>
 
         <div style="border-top:1px solid rgba(var(--ov),.1); padding-top:22px; display:grid; gap:14px">
-          <div class="fl" style="margin-bottom:2px">Ik schrijf me in voor</div>
-          <label class="cb"><input type="checkbox" name="sessie3" checked /><span><span class="cb-t">AI-automatisering in de praktijk: drie cases</span><span class="cb-d">Donderdag 26 november, 10:30 – 11:30</span></span></label>
+          <div class="fl" style="margin-bottom:2px">Welke replays wil je ontvangen?</div>
+          <label class="cb"><input type="checkbox" name="sessie3" checked /><span><span class="cb-t">AI-automatisering in de praktijk: drie cases · replay</span><span class="cb-d">Gepasseerd op 26 november, je ontvangt de opname</span></span></label>
           <label class="cb"><input type="checkbox" name="sessie1" checked /><span><span class="cb-t">AI in mensentaal — replay</span><span class="cb-d">Gepasseerd op 24 september, je ontvangt de opname</span></span></label>
           <label class="cb"><input type="checkbox" name="sessie2" checked /><span><span class="cb-t">De 4 meest gemaakte fouten — replay</span><span class="cb-d">Gepasseerd op 29 oktober, je ontvangt de opname</span></span></label>
         </div>
@@ -161,7 +162,7 @@ const sessies = [
         <label class="cb"><input type="checkbox" name="privacy" required /><span class="cb-t" style="font-weight:400; font-size:14px; color:rgba(var(--fg),.55)">Ik ga akkoord met de privacyverklaring van <a href="/privacy" style="color:var(--accent)">BTTMLINE</a>. *</span></label>
 
         <div style="display:flex; flex-wrap:wrap; align-items:center; gap:18px">
-          <button type="submit" class="btn-cta" style="background:#007861; color:#FFFFFF; font-family:'Geist',sans-serif; padding:15px 26px; border:1px solid #00A583; cursor:pointer">Schrijf me in →</button>
+          <button type="submit" class="btn-cta" style="background:#007861; color:#FFFFFF; font-family:'Geist',sans-serif; padding:15px 26px; border:1px solid #00A583; cursor:pointer">Vraag de replays aan →</button>
           <span id="webinar-status" role="status" aria-live="polite" style="font-family:'Geist',sans-serif; font-size:14px; color:rgba(var(--fg),.5)"></span>
         </div>
       </form>
@@ -224,13 +225,13 @@ const sessies = [
       wf.addEventListener('submit', async (e) => {
         e.preventDefault();
         if (wf.website && wf.website.value) return; // honeypot tegen bots
-        if (!WEBHOOK) { ws.textContent = 'Het inschrijfformulier is nog niet geconfigureerd. Mail ons gerust op info@bttmline.be.'; ws.style.color = 'rgba(var(--fg),.7)'; return; }
+        if (!WEBHOOK) { ws.textContent = 'Het aanvraagformulier is nog niet geconfigureerd. Mail ons gerust op info@bttmline.be.'; ws.style.color = 'rgba(var(--fg),.7)'; return; }
         const g = (n) => (new FormData(wf).get(n) || '').toString().trim();
         const sessies = [];
         if (wf.sessie3.checked) sessies.push('Automatisering in de praktijk (26/11)');
         if (wf.sessie1.checked) sessies.push('AI in mensentaal — replay (24/9)');
         if (wf.sessie2.checked) sessies.push('De 4 fouten — replay (29/10)');
-        if (sessies.length === 0) { ws.textContent = 'Kies minstens één sessie.'; ws.style.color = '#ff8f6b'; return; }
+        if (sessies.length === 0) { ws.textContent = 'Kies minstens één replay.'; ws.style.color = '#ff8f6b'; return; }
 
         const btn = wf.querySelector('button[type="submit"]');
         const orig = btn.textContent;
